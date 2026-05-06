@@ -1,10 +1,11 @@
 import { createRoot } from "react-dom/client";
-import LandingPage from "./pages/LandingPage";
+
 import "./assets/css/global.css"
+import RouterConfig from "./router/Router";
 
 
 createRoot(document.getElementById('root')!).render(
     <>
-    <LandingPage />
+    <RouterConfig/>
     </>   
 )
