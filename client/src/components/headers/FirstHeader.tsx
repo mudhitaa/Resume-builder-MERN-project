@@ -1,6 +1,6 @@
 import { Heading1 } from "../typography/Heading";
 import logo from "../../assets/images/logo.jpg";
-import { RedirectLink } from "../../layouts/ui/Links";
+import { RedirectLink } from "../../ui/Links";
 
 export interface Firstheaderprops{
     linkurl:string;

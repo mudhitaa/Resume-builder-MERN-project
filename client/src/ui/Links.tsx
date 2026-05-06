@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 
 export interface IOutlinedLink{
     url:string;
-    txt?:ReactNode;
+    txt:ReactNode;
     className?:string;
 }
 

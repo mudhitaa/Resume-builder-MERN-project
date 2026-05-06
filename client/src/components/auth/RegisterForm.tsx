@@ -1,12 +1,14 @@
 import { useState, type BaseSyntheticEvent } from "react"
 import { FormInput } from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
-import { type Icredientials } from "../../types/AuthTypes";
+import { type IRegisterFormData } from "../../types/AuthTypes";
 
-export default function LoginForm() { 
-    const [credientials,setCredientials]= useState<Icredientials>({ 
+export default function RegisterForm() { 
+    const [credientials,setCredientials]= useState<IRegisterFormData>({ 
+        name:"",
         email:"", 
-        password:"" })
+        password:"",
+        confirmPassword:"" })
 
     const handleInputChange =(ev:BaseSyntheticEvent)=>{
                     const name =ev.target.name
@@ -20,6 +22,12 @@ export default function LoginForm() {
         
          <form className="flex flex-col gap-4 p-4">
             <FormInput
+                type="text"
+                name="name"
+                placeholder="Name"
+                handler={handleInputChange}
+            />
+            <FormInput
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -31,7 +39,13 @@ export default function LoginForm() {
                 placeholder="Password"
                 handler={handleInputChange}
             />
-            <FormActionButton submitBtnTxt="Login" />
+            <FormInput
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                handler={handleInputChange}
+            />
+            <FormActionButton submitBtnTxt="Register" />
         </form>
     </>)
     }

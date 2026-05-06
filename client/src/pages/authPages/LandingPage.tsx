@@ -1,6 +1,6 @@
 
-import { Heading1, Heading2, Text } from "../components/typography/Heading";
-import { AuthLayout } from "../layouts/AuthLayout";
+import { Heading1, Heading2, Text } from "../../components/typography/Heading";
+import { AuthLayout } from "../../layouts/AuthLayout";
 
 export default function LandingPage() {
   return (

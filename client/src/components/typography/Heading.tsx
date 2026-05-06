@@ -17,7 +17,7 @@ export interface Textprops{
 
 export const Heading1=({pagetitle,className=''}:Readonly<Heading1Props>)=>{
     return(
-        <h1 className={`text-xl sm:text-2xl md:text-3xl font-semibold ${className}`}>{pagetitle}</h1>
+        <h1 className={`text-xl sm:text-2xl md:text-3xl font-semibold text-blue-900 ${className}`}>{pagetitle}</h1>
     )
 }
 
