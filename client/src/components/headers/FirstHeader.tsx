@@ -5,17 +5,18 @@ import { RedirectLink } from "../../ui/Links";
 export interface Firstheaderprops{
     linkurl:string;
     linktext:string;
+    logourl?:string;
 }
 
 
-export const FirstHeader = ({linkurl,linktext}:Readonly<Firstheaderprops>) => {
+export const FirstHeader = ({logourl ="/",linkurl,linktext}:Readonly<Firstheaderprops>) => {
   return (
     <header className="bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
 
         {/* LEFT SIDE (LOGO + TITLE) */}
         <div >
-          <RedirectLink url="/" 
+          <RedirectLink url={logourl} 
           
               txt = {<div className="flex items-center gap-2">
                 <img

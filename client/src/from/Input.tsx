@@ -1,4 +1,4 @@
-import { type IFormInput , type IFormLable, type IFormSelectProps, type ISingleOption } from "../types/InputTypes"
+import { type IFormInput , type IFormLable, type IFormSelectProps, type IFormTextArea, type ISingleOption } from "../types/InputTypes"
 
 export const FormInput =({type,name,placeholder, handler}:Readonly<IFormInput>)=>{
     return(
@@ -29,36 +29,41 @@ export const FormLable =({htmlFor,children}:Readonly<IFormLable>)=>{
 export const FormSelect =({name,handler,options}:Readonly<IFormSelectProps>)=>{
     return(
        <>
-                return(
                     <>
                     <select 
                     id={name}
                     name={name}
                     onChange={handler}
-                    className="border p-2 border-pink-400 bg-pink-50 w-full rounded-md">
+                    className="border p-2 m-1 w-full rounded-md focus:outline-blue-800">
 
                         <option value="">--select any one--</option>
                         {options && options.map((val:ISingleOption, ind:number)=>{
-                            return <option key={ind} value = {val.value}>
+                            return (
+                                <option key={ind} value = {val.value}>
                                     {val.label}
-                            </option>
+                                </option>
+                            )
                         })}  
 
                     
                     </select>
                     
                     </>
-                    
-                )
+                            
              
        </>
     )
 }
 
-export const FormTextArea =()=>{
+export const FormTextArea =({name,placeholder,handler}:Readonly<IFormTextArea>)=>{
     return(
        <>
-           
+           <textarea
+                        name={name}
+                        placeholder={placeholder}
+                        onChange={handler}
+                        className="border rounded-lg p-2 focus:outline-blue-800  w-full"
+                    />
        </>
     )
 }

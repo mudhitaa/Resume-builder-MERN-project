@@ -4,7 +4,7 @@ export interface IFormInput{
     type:string;
     name:string;
     placeholder:string;
-    handler: (ev:BaseSyntheticEvent)=>void;
+    handler?: (ev:BaseSyntheticEvent)=>void;
 }
 export interface IFormLable{
     htmlFor:string;
@@ -18,7 +18,13 @@ export interface ISingleOption{
 
 export interface IFormSelectProps{
     name:string;
-    handler:any;
+    handler?: (ev:BaseSyntheticEvent)=>void;
     options:Array<ISingleOption>;
     errMsg?:string;
+}
+
+export interface IFormTextArea{
+    name:string;
+    placeholder:string;
+    handler: (ev:BaseSyntheticEvent) => void;
 }
