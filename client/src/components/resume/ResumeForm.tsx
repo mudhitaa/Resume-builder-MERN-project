@@ -1,70 +1,44 @@
 
-import { useState, type BaseSyntheticEvent } from "react";
+import { useEffect, type ChangeEvent } from "react";
 import { Heading2, Text } from "../typography/Heading";
 import {FormInput,FormLable,FormSelect, FormTextArea} from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
 import EducationSection from "../../from/EducationSection";
+import { type IResumeData } from "../../types/FormTypes";
+import WorkExperienceSection from "../../from/WorkExperienceSection";
+import { type Dispatch, type SetStateAction } from "react";
 
-export interface IEducation {
-    school: string;
-    degree: string;
-    startYear: string;
-    endYear: string;
-}
 
-export interface IResumeData {
-    fullname: string;
-    email: string;
-    phone: string;
-    skills: string;
-    template: string;
-    font: string;
-
-    education: IEducation[];
-}
-
-export default function ResumeForm() {
-
-    const [resumeData, setResumeData] = useState<IResumeData>({
-        fullname: "",
-        email: "",
-        phone: "",
-        skills: "",
-        template: "",
-        font: "",
-
-        education: [
-            {
-                school: "",
-                degree: "",
-                startYear: "",
-                endYear: ""
-            }
-        ]
-    });
-
+export default function ResumeForm({resumeData,setResumeData}: {resumeData: IResumeData;setResumeData: Dispatch<SetStateAction<IResumeData>>;}) {
+   
     // PERSONAL INFO HANDLER
-    const handleInputChange = (ev:BaseSyntheticEvent) => {
+    const handleInputChange = (ev:ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement
+    >) => {
         const { name, value } = ev.target;
         setResumeData({
             ...resumeData,
             [name]: value
         });
-        console.log(resumeData);
+
     };
 
     // SELECT HANDLER
-    const handleSelectChange = (ev:BaseSyntheticEvent) => {
+    const handleSelectChange = (ev:ChangeEvent<
+        HTMLSelectElement
+    >) => {
         const { name, value } = ev.target;
         setResumeData({
             ...resumeData,
             [name]: value
         });
-        console.log(resumeData);
+
     };
 
     // EDUCATION CHANGE HANDLER
-    const handleEducationChange = (index: number,ev: BaseSyntheticEvent) => {
+    const handleEducationChange = (index: number,ev: ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement
+    >) => {
         const { name, value } = ev.target;
         const updatedEducation = [...resumeData.education];
 
@@ -77,36 +51,34 @@ export default function ResumeForm() {
             ...resumeData,
             education: updatedEducation
         });
-        console.log(resumeData);
+
     };
 
-    // ADD EDUCATION
-    const addEducation = () => {
-        setResumeData({
-            ...resumeData,
-            education: [
-                ...resumeData.education,
-                {
-                    school: "",
-                    degree: "",
-                    startYear: "",
-                    endYear: ""
-                }
-            ]
-        });
-    };
 
-    // REMOVE EDUCATION
-    const removeEducation = (index: number) => {
+    const handleExperienceChange = (index: number,ev: ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement 
+    >) => {
+            const { name, value } = ev.target;
 
-        const filteredEducation =
-            resumeData.education.filter((_, ind) => ind !== index);
+            const updatedExperience =
+                [...resumeData.experience];
+            updatedExperience[index] = {
+                ...updatedExperience[index],
+                [name]: value
+            };
+            setResumeData({
+                ...resumeData,
+                experience: updatedExperience
+            });
 
-        setResumeData({
-            ...resumeData,
-            education: filteredEducation
-        });
-    };
+         
+        };
+
+            useEffect(() => {
+            console.log(resumeData);
+        }, [resumeData]);
+
+            
 
     const templateOptions = [
         { label: "Modern Template", value: "modern" },
@@ -144,6 +116,7 @@ export default function ResumeForm() {
                             name="fullname"
                             placeholder="Full Name"
                             handler={handleInputChange}
+                            value={resumeData.fullname}
                         />
 
                         <FormInput
@@ -151,6 +124,7 @@ export default function ResumeForm() {
                             name="email"
                             placeholder="Email Address"
                             handler={handleInputChange}
+                            value={resumeData.email}
                         />
 
                         <FormInput
@@ -158,23 +132,94 @@ export default function ResumeForm() {
                             name="phone"
                             placeholder="Phone Number"
                             handler={handleInputChange}
+                            value={resumeData.phone}
                         />
 
                     </div>
                 </div>
 
-                {/* EDUCATION */}
+                {/* PROFILE SUMMARY */}
                 <div className="mb-8">
 
+                    <Text className="font-semibold mb-4 text-gray-700">
+                        Profile Summary
+                    </Text>
+
+                    <FormTextArea
+                        name="summary"
+                        placeholder="Write a short professional summary..."
+                        handler={handleInputChange}
+                        value={resumeData.summary}
+                    />
+
+                </div>
+
+                {/* WORK EXPERIENCE */}
+                <div className="mb-8">
+                    <Text className="font-semibold mb-4 text-gray-700">
+                        Experience
+                    </Text>
+                    <WorkExperienceSection
+                        experience={resumeData.experience}
+                        handler={handleExperienceChange}
+                        addExperience={() => {
+                            setResumeData({
+                                ...resumeData,
+                                experience: [
+                                    ...resumeData.experience,
+                                    {
+                                        company: "",
+                                        position: "",
+                                        startDate: "",
+                                        endDate: "",
+                                        description: ""
+                                    }
+                                ]
+                            });
+                        }}
+                        removeExperience={(index) => {
+                            const filteredExperience = resumeData.experience.filter((_, ind) => ind !== index);
+                            setResumeData({
+                                ...resumeData,
+                                experience: filteredExperience
+                            });
+                        }}
+                    />
+                </div>
+                
+
+                {/* EDUCATION */}
+                <div className="mb-8">
                     <Text className="font-semibold mb-4 text-gray-700">
                         Education
                     </Text>
 
                     <EducationSection
                         education={resumeData.education}
-                        handleEducationChange={handleEducationChange}
-                        addEducation={addEducation}
-                        removeEducation={removeEducation}
+                        handler={handleEducationChange}
+                        addEducation={() => {
+                                    setResumeData({
+                                        ...resumeData,
+                                        education: [
+                                            ...resumeData.education,
+                                            {
+                                                school: "",
+                                                degree: "",
+                                                startYear: "",
+                                                endYear: ""
+                                            }
+                                        ]
+                                    });
+                                }}
+                        removeEducation={(index: number) => {
+                            const filteredEducation =
+                                resumeData.education.filter((_, ind) => ind !== index);
+
+                            setResumeData({
+                                ...resumeData,
+                                education: filteredEducation
+                            });
+                        }}
                     />
 
                 </div>
@@ -190,6 +235,7 @@ export default function ResumeForm() {
                         name="skills"
                         placeholder="Enter your skills"
                         handler={handleInputChange}
+                        value={resumeData.skills}
                     />
 
                 </div>
@@ -208,6 +254,7 @@ export default function ResumeForm() {
                             name="template"
                             options={templateOptions}
                             handler={handleSelectChange}
+                            value={resumeData.template}
                         />
                         </div>
                         
@@ -217,6 +264,7 @@ export default function ResumeForm() {
                             name="font"
                             options={fontOptions}
                             handler={handleSelectChange}
+                            value={resumeData.font}
                         />
 
                         </div>

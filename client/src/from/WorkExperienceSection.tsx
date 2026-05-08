@@ -1,94 +1,109 @@
-// EducationSection.tsx
-
-import { FormInput } from "./Input";
-import {  type IEducationSectionProps } from "../types/FormTypes";
 import { AddButton, RemoveButton } from "./Button";
+import { FormInput, FormTextArea } from "./Input";
+import { type IWorkExperienceSectionProps } from "../types/FormTypes";
 
 
-export default function EducationSection({
-    education,
+
+export default function WorkExperienceSection({
+    experience,
     handler,
-    addEducation,
-    removeEducation
-}: Readonly<IEducationSectionProps>) {
+    addExperience,
+    removeExperience
+}: Readonly<IWorkExperienceSectionProps>) {
 
     return (
         <>
             <div className="space-y-6">
 
-                {education.map((edu, index) => (
+                {experience.map((exp, index) => (
 
                     <div
                         key={index}
                         className="border rounded-xl p-4 shadow-sm bg-gray-50"
                     >
 
+                        {/* HEADER */}
                         <div className="flex justify-between items-center mb-4">
 
                             <h3 className="font-semibold text-gray-700">
                                 #{index + 1}
                             </h3>
 
-                            {education.length > 1 && (
+                            {experience.length > 1 && (
                                 <RemoveButton
-                                    onClick={() => removeEducation(index)}
+                                    type="Experience"
+                                    onClick={() => removeExperience(index)}
                                 />
                             )}
 
                         </div>
 
+                        {/* FORM */}
                         <div className="flex flex-col gap-4">
 
                             <FormInput
                                 type="text"
-                                name="school"
-                                placeholder="School / University"
+                                name="company"
+                                placeholder="Company Name"
                                 handler={(ev) =>
                                     handler(index, ev)
                                 }
-                                value={edu.school}
+                                value={exp.company}
                             />
 
                             <FormInput
                                 type="text"
-                                name="degree"
-                                placeholder="Degree"
+                                name="position"
+                                placeholder="Position / Role"
                                 handler={(ev) =>
                                     handler(index, ev)
                                 }
-                                value={edu.degree}
+                                value={exp.position}
                             />
 
                             <div className="grid grid-cols-2 gap-4">
 
                                 <FormInput
-                                    type="text"
-                                    name="startYear"
-                                    placeholder="Start Year"
+                                    type="date"
+                                    name="startDate"
+                                    placeholder=""
                                     handler={(ev) =>
                                         handler(index, ev)
                                     }
-                                    value={edu.startYear}
+                                    value={exp.startDate}
                                 />
 
                                 <FormInput
-                                    type="text"
-                                    name="endYear"
-                                    placeholder="End Year"
+                                    type="date"
+                                    name="endDate"
+                                    placeholder=""
                                     handler={(ev) =>
                                         handler(index, ev)
                                     }
-                                    value={edu.endYear} 
+                                    value={exp.endDate}
                                 />
 
                             </div>
 
+                            <FormTextArea
+                                name="description"
+                                placeholder="Describe your responsibilities and achievements..."
+                                handler={(ev) =>
+                                    handler(index, ev)
+                                }
+                                value={exp.description}
+                            />
+
+                            
+
                         </div>
 
                     </div>
+
                 ))}
 
-                <AddButton type="Education" onClick={addEducation} />
+                {/* ADD BUTTON */}
+                <AddButton type="Experience" onClick={addExperience} />
 
             </div>
         </>

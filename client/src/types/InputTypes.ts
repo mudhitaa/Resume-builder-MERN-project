@@ -1,10 +1,11 @@
-import type { BaseSyntheticEvent } from "react";
+import type { ChangeEvent } from "react";
 
 export interface IFormInput{
     type:string;
     name:string;
     placeholder:string;
-    handler?: (ev:BaseSyntheticEvent)=>void;
+    handler?: (ev:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>void;
+    value?: string;
 }
 export interface IFormLable{
     htmlFor:string;
@@ -13,18 +14,20 @@ export interface IFormLable{
 
 export interface ISingleOption{
     label:string,
-    value:string
+    value?:string
 }
 
 export interface IFormSelectProps{
     name:string;
-    handler?: (ev:BaseSyntheticEvent)=>void;
+    handler?: (ev:ChangeEvent<HTMLSelectElement>)=>void;
     options:Array<ISingleOption>;
     errMsg?:string;
+    value?: string;
 }
 
 export interface IFormTextArea{
     name:string;
     placeholder:string;
-    handler: (ev:BaseSyntheticEvent) => void;
+    handler: (ev:ChangeEvent<HTMLTextAreaElement>) => void;
+    value: string;
 }

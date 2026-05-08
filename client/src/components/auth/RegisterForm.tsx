@@ -1,4 +1,4 @@
-import { useState, type BaseSyntheticEvent } from "react"
+import { useState, type ChangeEvent } from "react"
 import { FormInput } from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
 import { type IRegisterFormData } from "../../types/AuthTypes";
@@ -10,7 +10,9 @@ export default function RegisterForm() {
         password:"",
         confirmPassword:"" })
 
-    const handleInputChange =(ev:BaseSyntheticEvent)=>{
+    const handleInputChange =(ev:ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement
+    >)=>{
                     const name =ev.target.name
                     setCredientials({
                         ...credientials,
@@ -26,24 +28,28 @@ export default function RegisterForm() {
                 name="name"
                 placeholder="Name"
                 handler={handleInputChange}
+                value={credientials.name}
             />
             <FormInput
                 type="email"
                 name="email"
                 placeholder="Email"
                 handler={handleInputChange}
+                value={credientials.email}
             />
             <FormInput
                 type="password"
                 name="password"
                 placeholder="Password"
                 handler={handleInputChange}
+                value={credientials.password}
             />
             <FormInput
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 handler={handleInputChange}
+                value={credientials.confirmPassword}
             />
             <FormActionButton submitBtnTxt="Register" />
         </form>

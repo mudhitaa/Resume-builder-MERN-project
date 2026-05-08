@@ -1,9 +1,9 @@
-import {  useState, type BaseSyntheticEvent } from "react"
+import {  useState, type ChangeEvent } from "react"
 import { FormInput } from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
 import { type Icredientials } from "../../types/AuthTypes";
 import { useNavigate } from "react-router";
-
+import type { SyntheticEvent } from "react";
 export default function LoginForm() { 
 
     const navigate = useNavigate()
@@ -11,7 +11,9 @@ export default function LoginForm() {
         email:"", 
         password:"" })
 
-    const handleInputChange =(ev:BaseSyntheticEvent)=>{
+    const handleInputChange =(ev:ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement
+    >)=>{
                     const name =ev.target.name
                     setCredientials({
                         ...credientials,
@@ -19,7 +21,7 @@ export default function LoginForm() {
                     })
                 }
 
-    const handleLogin = (ev: BaseSyntheticEvent) => {
+    const handleLogin = (ev: SyntheticEvent<HTMLFormElement>) => {
         ev.preventDefault();
 
         // TEMPORARY FRONTEND AUTH
@@ -41,12 +43,14 @@ export default function LoginForm() {
                 name="email"
                 placeholder="Email"
                 handler={handleInputChange}
+                value={credientials.email}
             />
             <FormInput
                 type="password"
                 name="password"
                 placeholder="Password"
                 handler={handleInputChange}
+                value={credientials.password}
             />
             <FormActionButton submitBtnTxt="Login" />
         </form>

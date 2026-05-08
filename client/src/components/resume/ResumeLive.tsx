@@ -1,46 +1,62 @@
-export default function ResumeLive() {
+import { type IResumeData } from "../../types/FormTypes";
+
+export default function ResumeLive({ resumeData }: { resumeData: IResumeData }) {
     return (
-        <>
-            {/* RIGHT SIDE - RESUME PREVIEW */}
-                    <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="bg-white rounded-2xl shadow-md p-6">
 
-                        <h2 className="text-2xl font-semibold mb-6">
-                            Live Resume Preview
-                        </h2>
+            <h2 className="text-2xl font-semibold mb-6">
+                Live Resume Preview
+            </h2>
 
-                        <div className="border border-dashed border-gray-300 rounded-xl min-h-[700px] p-6">
+            <div className="border border-dashed border-gray-300 rounded-xl p-6">
 
-                            <h1 className="text-3xl font-bold text-gray-800">
-                                Your Name
-                            </h1>
+                {/* NAME */}
+                <h1 className="text-3xl font-bold text-gray-800">
+                    {resumeData.fullname || "Your Name"}
+                </h1>
 
-                            <p className="text-gray-500 mt-2">
-                                your.email@example.com
-                            </p>
+                <p className="text-gray-500 mt-2">
+                    {resumeData.email || "your.email@example.com"}
+                </p>
 
-                            <div className="mt-8">
-                                <h3 className="text-xl font-semibold mb-2">
-                                    Education
-                                </h3>
+                <p className="text-gray-500">
+                    {resumeData.phone}
+                </p>
 
-                                <p className="text-gray-700">
-                                    Bachelor in Computer Science
-                                </p>
-                            </div>
+                {/* SUMMARY */}
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold mb-2">
+                        Summary
+                    </h3>
+                    <p className="text-gray-700">
+                        {resumeData.summary || "Write your summary..."}
+                    </p>
+                </div>
 
-                            <div className="mt-8">
-                                <h3 className="text-xl font-semibold mb-2">
-                                    Skills
-                                </h3>
+                {/* EDUCATION */}
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold mb-2">
+                        Education
+                    </h3>
 
-                                <p className="text-gray-700">
-                                    React, Node.js, MongoDB
-                                </p>
-                            </div>
+                    {resumeData.education.map((edu, i) => (
+                        <p key={i} className="text-gray-700">
+                            {edu.degree} - {edu.school}
+                        </p>
+                    ))}
+                </div>
 
-                        </div>
+                {/* SKILLS */}
+                <div className="mt-6">
+                    <h3 className="text-xl font-semibold mb-2">
+                        Skills
+                    </h3>
+                    <p className="text-gray-700">
+                        {resumeData.skills}
+                    </p>
+                </div>
 
-                    </div>
-        </>
+            </div>
+        </div>
     );
 }
