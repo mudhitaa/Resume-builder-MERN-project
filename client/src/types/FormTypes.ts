@@ -59,3 +59,9 @@ export interface IResumeComponentProps {
     resumeData: IResumeData;
     handleInputChange: (ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
+
+export interface IResumeFormProps {
+    resumeData: IResumeData;
+    setResumeData: React.Dispatch<React.SetStateAction<IResumeData>>;
+    className?: string;
+}

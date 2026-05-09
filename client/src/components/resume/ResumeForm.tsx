@@ -1,18 +1,18 @@
 
-import { useEffect, type ChangeEvent } from "react";
+import {type ChangeEvent } from "react";
 import { Heading2, Text } from "../typography/Heading";
-import {FormLable,FormSelect, FormTextArea} from "../../from/Input";
+import {FormLable,FormSelect} from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
-import EducationSection from "../../from/resume/EducationSection";
-import { type IResumeData } from "../../types/FormTypes";
-import WorkExperienceSection from "../../from/resume/WorkExperienceSection";
-import { type Dispatch, type SetStateAction } from "react";
-import { PersonalInfoSection } from "../../from/resume/PersonalInfo";
-import { SummarySection } from "../../from/resume/Summary";
-import { Skills } from "../../from/resume/Skills";
+import EducationSection from "../../from/resumeform/EducationSection";
+import { type IResumeFormProps } from "../../types/FormTypes";
+import WorkExperienceSection from "../../from/resumeform/WorkExperienceSection";
+import { PersonalInfoSection } from "../../from/resumeform/PersonalInfo";
+import { SummarySection } from "../../from/resumeform/Summary";
+import { Skills } from "../../from/resumeform/Skills";
 
 
-export default function ResumeForm({resumeData,setResumeData,className}: {resumeData: IResumeData;setResumeData: Dispatch<SetStateAction<IResumeData>>;className?: string;}) {
+
+export default function ResumeForm({resumeData,setResumeData,className}: Readonly<IResumeFormProps>) {
    
     // PERSONAL INFO HANDLER
     const handleInputChange = (ev:ChangeEvent<
@@ -77,7 +77,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: {resume
         };
 
             
-
     const templateOptions = [
         { label: "Modern Template", value: "modern" },
         { label: "Classic Template", value: "classic" },
