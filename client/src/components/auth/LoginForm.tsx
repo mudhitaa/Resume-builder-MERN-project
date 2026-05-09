@@ -1,17 +1,19 @@
 import { useForm } from "react-hook-form";
 import { FormActionButton } from "../../from/Button";
-import { type Icredientials } from "../../types/AuthTypes";
+import { LoginDefaultValues, type Icredientials } from "../../types/AuthTypes";
 import { useNavigate } from "react-router";
 import { AuthInput } from "../../from/AuthInput";
+import { loginDTO } from "../../types/AuthTypes";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+
 
 export default function LoginForm() { 
 
     const navigate = useNavigate()
-    const {handleSubmit,control}= useForm<Icredientials>({
-        defaultValues:{
-            email:"",
-            password:""
-        }
+    const {handleSubmit,control,formState:{errors}}= useForm<Icredientials>({
+        defaultValues:LoginDefaultValues,
+        resolver: zodResolver(loginDTO)
     })
 
     const handleLoginSubmit = (data:Icredientials) => {
@@ -26,7 +28,7 @@ export default function LoginForm() {
             alert("Invalid credentials");
         }
     };
-
+    
     return(<>
         
          <form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit(handleLoginSubmit)}>
@@ -35,14 +37,14 @@ export default function LoginForm() {
                 name="email"
                 placeholder="Email"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.email?.message}
             />
             <AuthInput
                 type="password"
                 name="password"
                 placeholder="Password"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.password?.message}
             />
             <FormActionButton submitBtnTxt="Login" />
         </form>

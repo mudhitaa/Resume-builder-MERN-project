@@ -1,26 +1,22 @@
 import { useForm } from "react-hook-form";
-
 import { FormActionButton } from "../../from/Button";
 import { type IRegisterFormData } from "../../types/AuthTypes";
 import { AuthInput } from "../../from/AuthInput";
+import { RegisterDefaultValues, registerDTO } from "../../types/AuthTypes";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+
 
 export default function RegisterForm() { 
-    const{handleSubmit,control}= useForm<IRegisterFormData>({
-        defaultValues:{
-            name:"",
-            email:"",
-            password:"",
-            confirmPassword:""
-        }
+
+    const{handleSubmit,control,formState:{errors}}= useForm<IRegisterFormData>({
+        defaultValues:RegisterDefaultValues,
+        resolver: zodResolver(registerDTO)
     })
 
         const handleRegisterSubmit = (data:IRegisterFormData) => {
         // TEMPORARY FRONTEND REGISTER LOGIC
         console.log("Registration data:", data);
-        if (data.password !== data.confirmPassword) {
-            alert("Passwords do not match");
-            return;
-        }
     }
 
     return(<>
@@ -31,28 +27,28 @@ export default function RegisterForm() {
                 name="name"
                 placeholder="Name"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.name?.message}
             />
             <AuthInput
                 type="email"
                 name="email"
                 placeholder="Email"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.email?.message}
             />
             <AuthInput
                 type="password"
                 name="password"
                 placeholder="Password"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.password?.message}
             />
             <AuthInput
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 handler={control}
-                errMsg={""}
+                errMsg={errors?.confirmPassword?.message}
             />
             <FormActionButton submitBtnTxt="Register" />
         </form>
