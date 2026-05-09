@@ -4,6 +4,7 @@ export interface IResumeData {
     fullname: string;
     email: string;
     phone: string;
+    address: string;
     skills: string;
     template: string;
     font: string;
@@ -52,4 +53,9 @@ export interface IWorkExperienceSectionProps {
     addExperience: () => void;
 
     removeExperience: (index: number) => void;
+}
+
+export interface IResumeComponentProps {
+    resumeData: IResumeData;
+    handleInputChange: (ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }

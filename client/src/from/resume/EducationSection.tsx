@@ -1,8 +1,8 @@
 // EducationSection.tsx
-
-import { FormInput } from "./Input";
-import {  type IEducationSectionProps } from "../types/FormTypes";
-import { AddButton, RemoveButton } from "./Button";
+import { Text } from "../../components/typography/Heading";
+import { FormInput } from "../Input";
+import {  type IEducationSectionProps } from "../../types/FormTypes";
+import { AddButton, RemoveButton } from "../Button";
 
 
 export default function EducationSection({
@@ -13,7 +13,10 @@ export default function EducationSection({
 }: Readonly<IEducationSectionProps>) {
 
     return (
-        <>
+        <div className="mb-8">
+                    <Text className="font-semibold mb-4 text-gray-700">
+                        Education
+                    </Text>
             <div className="space-y-6">
 
                 {education.map((edu, index) => (
@@ -29,7 +32,7 @@ export default function EducationSection({
                                 #{index + 1}
                             </h3>
 
-                            {education.length > 1 && (
+                            {education.length > 0 && (
                                 <RemoveButton
                                     onClick={() => removeEducation(index)}
                                 />
@@ -91,6 +94,6 @@ export default function EducationSection({
                 <AddButton type="Education" onClick={addEducation} />
 
             </div>
-        </>
+        </div>
     );
 }

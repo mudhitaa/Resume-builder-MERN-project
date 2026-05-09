@@ -1,7 +1,7 @@
-import { AddButton, RemoveButton } from "./Button";
-import { FormInput, FormTextArea } from "./Input";
-import { type IWorkExperienceSectionProps } from "../types/FormTypes";
-
+import { AddButton, RemoveButton } from "../Button";
+import { FormInput, FormTextArea } from "../Input";
+import { type IWorkExperienceSectionProps } from "../../types/FormTypes";
+import { Text } from "../../components/typography/Heading";
 
 
 export default function WorkExperienceSection({
@@ -12,7 +12,11 @@ export default function WorkExperienceSection({
 }: Readonly<IWorkExperienceSectionProps>) {
 
     return (
-        <>
+        <div className="mb-8">
+                    <Text className="font-semibold mb-4 text-gray-700">
+                        Experience
+                    </Text>
+        
             <div className="space-y-6">
 
                 {experience.map((exp, index) => (
@@ -29,7 +33,7 @@ export default function WorkExperienceSection({
                                 #{index + 1}
                             </h3>
 
-                            {experience.length > 1 && (
+                            {experience.length > 0 && (
                                 <RemoveButton
                                     type="Experience"
                                     onClick={() => removeExperience(index)}
@@ -106,6 +110,6 @@ export default function WorkExperienceSection({
                 <AddButton type="Experience" onClick={addExperience} />
 
             </div>
-        </>
+        </div>
     );
 }

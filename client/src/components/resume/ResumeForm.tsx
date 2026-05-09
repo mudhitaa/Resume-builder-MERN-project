@@ -1,15 +1,18 @@
 
 import { useEffect, type ChangeEvent } from "react";
 import { Heading2, Text } from "../typography/Heading";
-import {FormInput,FormLable,FormSelect, FormTextArea} from "../../from/Input";
+import {FormLable,FormSelect, FormTextArea} from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
-import EducationSection from "../../from/EducationSection";
+import EducationSection from "../../from/resume/EducationSection";
 import { type IResumeData } from "../../types/FormTypes";
-import WorkExperienceSection from "../../from/WorkExperienceSection";
+import WorkExperienceSection from "../../from/resume/WorkExperienceSection";
 import { type Dispatch, type SetStateAction } from "react";
+import { PersonalInfoSection } from "../../from/resume/PersonalInfo";
+import { SummarySection } from "../../from/resume/Summary";
+import { Skills } from "../../from/resume/Skills";
 
 
-export default function ResumeForm({resumeData,setResumeData}: {resumeData: IResumeData;setResumeData: Dispatch<SetStateAction<IResumeData>>;}) {
+export default function ResumeForm({resumeData,setResumeData,className}: {resumeData: IResumeData;setResumeData: Dispatch<SetStateAction<IResumeData>>;className?: string;}) {
    
     // PERSONAL INFO HANDLER
     const handleInputChange = (ev:ChangeEvent<
@@ -54,7 +57,6 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
 
     };
 
-
     const handleExperienceChange = (index: number,ev: ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement 
     >) => {
@@ -74,10 +76,6 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
          
         };
 
-            useEffect(() => {
-            console.log(resumeData);
-        }, [resumeData]);
-
             
 
     const templateOptions = [
@@ -94,7 +92,7 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
 
     return (
         <>
-            <div className="bg-white rounded-2xl shadow-md p-6 h-fit">
+            <div className={`bg-white rounded-2xl shadow-md p-6 h-fit ${className || ""}`}>
 
                 {/* PAGE TITLE */}
                 <Heading2
@@ -103,62 +101,13 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
                 />
 
                 {/* PERSONAL INFO */}
-                <div className="mb-8">
-
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Personal Information
-                    </Text>
-
-                    <div className="flex flex-col gap-4">
-
-                        <FormInput
-                            type="text"
-                            name="fullname"
-                            placeholder="Full Name"
-                            handler={handleInputChange}
-                            value={resumeData.fullname}
-                        />
-
-                        <FormInput
-                            type="email"
-                            name="email"
-                            placeholder="Email Address"
-                            handler={handleInputChange}
-                            value={resumeData.email}
-                        />
-
-                        <FormInput
-                            type="text"
-                            name="phone"
-                            placeholder="Phone Number"
-                            handler={handleInputChange}
-                            value={resumeData.phone}
-                        />
-
-                    </div>
-                </div>
+                <PersonalInfoSection resumeData={resumeData} handleInputChange={handleInputChange} />
+    
 
                 {/* PROFILE SUMMARY */}
-                <div className="mb-8">
-
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Profile Summary
-                    </Text>
-
-                    <FormTextArea
-                        name="summary"
-                        placeholder="Write a short professional summary..."
-                        handler={handleInputChange}
-                        value={resumeData.summary}
-                    />
-
-                </div>
+                <SummarySection resumeData={resumeData} handleInputChange={handleInputChange} />
 
                 {/* WORK EXPERIENCE */}
-                <div className="mb-8">
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Experience
-                    </Text>
                     <WorkExperienceSection
                         experience={resumeData.experience}
                         handler={handleExperienceChange}
@@ -185,15 +134,9 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
                             });
                         }}
                     />
-                </div>
                 
-
+            
                 {/* EDUCATION */}
-                <div className="mb-8">
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Education
-                    </Text>
-
                     <EducationSection
                         education={resumeData.education}
                         handler={handleEducationChange}
@@ -222,23 +165,9 @@ export default function ResumeForm({resumeData,setResumeData}: {resumeData: IRes
                         }}
                     />
 
-                </div>
-
                 {/* SKILLS */}
-                <div className="mb-8">
+                <Skills handleInputChange={handleInputChange} resumeData={resumeData} />
 
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Skills
-                    </Text>
-
-                    <FormTextArea
-                        name="skills"
-                        placeholder="Enter your skills"
-                        handler={handleInputChange}
-                        value={resumeData.skills}
-                    />
-
-                </div>
 
                 {/* CUSTOMIZATION */}
                 <div className="mb-8">

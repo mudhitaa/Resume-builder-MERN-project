@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { AuthInput } from "../../from/AuthInput";
 import { loginDTO } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
+//import Cookies from "js-cookie";
 
 
 
@@ -19,14 +20,8 @@ export default function LoginForm() {
     const handleLoginSubmit = (data:Icredientials) => {
         // TEMPORARY FRONTEND AUTH
         console.log("Login data:", data);
-        if (
-            data.email === "admin@admin.com" &&
-            data.password === "admin"
-        ) {
-            navigate("/resume-builder");
-        } else {
-            alert("Invalid credentials");
-        }
+        navigate("/resume-builder");
+        // this gets response from backend
     };
     
     return(<>

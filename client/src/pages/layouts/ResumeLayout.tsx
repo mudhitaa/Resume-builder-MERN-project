@@ -5,13 +5,13 @@ import bgImage from "../../assets/images/landingbg.jpg";
 import { type IResumeData } from "../../types/FormTypes";
 
 export const ResumeLayout = () => {
-
     const [resumeData, setResumeData] = useState<IResumeData>({
         fullname: "",
         email: "",
         phone: "",
         skills: "",
         summary: "",
+        address: "",
         template: "",
         font: "",
         education: [],
@@ -20,30 +20,28 @@ export const ResumeLayout = () => {
 
     return (
         <div
-            className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-5 bg-cover bg-center"
+            className="h-screen flex p-5 bg-cover bg-center"
             style={{ backgroundImage: `url(${bgImage})` }}
         >
-            <div className="min-h-screen bg-gray-100 rounded-2xl shadow-md p-5 w-full max-w-7xl mx-auto">
-
-                {/* TITLE */}
-                <div className="mb-6">
-                    <h1 className="text-3xl font-bold text-gray-800">
-                        Resume Builder
-                    </h1>
-                    <p className="text-gray-500 mt-2">
-                        Fill in your details and build your professional resume.
-                    </p>
-                </div>
+            <div className="w-full h-full bg-blue-50 rounded-2xl shadow-md p-5">
 
                 {/* MAIN LAYOUT */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-6 h-full">
 
-                    <ResumeForm
-                        resumeData={resumeData}
-                        setResumeData={setResumeData}
-                    />
+                    {/* LEFT - FORM (scrollable) */}
+                    <div className="h-full overflow-y-auto pr-2">
+                        <ResumeForm
+                            resumeData={resumeData}
+                            setResumeData={setResumeData}
+                        />
+                    </div>
 
-                    <ResumeLive resumeData={resumeData} />
+                    {/* RIGHT - PREVIEW (fixed scroll like Canva) */}
+                    <div className="h-full overflow-y-auto">
+                        
+                            <ResumeLive resumeData={resumeData} />
+                        
+                    </div>
 
                 </div>
 
