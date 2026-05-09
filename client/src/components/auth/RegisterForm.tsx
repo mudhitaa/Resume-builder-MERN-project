@@ -1,58 +1,60 @@
-import { useState, type ChangeEvent } from "react"
-import { FormInput } from "../../from/Input";
+import { useForm } from "react-hook-form";
+
 import { FormActionButton } from "../../from/Button";
 import { type IRegisterFormData } from "../../types/AuthTypes";
+import { AuthInput } from "../../from/AuthInput";
 
 export default function RegisterForm() { 
-    const [credientials,setCredientials]= useState<IRegisterFormData>({ 
-        name:"",
-        email:"", 
-        password:"",
-        confirmPassword:"" })
+    const{handleSubmit,control}= useForm<IRegisterFormData>({
+        defaultValues:{
+            name:"",
+            email:"",
+            password:"",
+            confirmPassword:""
+        }
+    })
 
-    const handleInputChange =(ev:ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement
-    >)=>{
-                    const name =ev.target.name
-                    setCredientials({
-                        ...credientials,
-                        [name]:ev.target.value
-                    })
-                }
+        const handleRegisterSubmit = (data:IRegisterFormData) => {
+        // TEMPORARY FRONTEND REGISTER LOGIC
+        console.log("Registration data:", data);
+        if (data.password !== data.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+    }
 
     return(<>
         
-         <form className="flex flex-col gap-4 p-4">
-            <FormInput
+         <form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit(handleRegisterSubmit)}>
+            <AuthInput
                 type="text"
                 name="name"
                 placeholder="Name"
-                handler={handleInputChange}
-                value={credientials.name}
+                handler={control}
+                errMsg={""}
             />
-            <FormInput
+            <AuthInput
                 type="email"
                 name="email"
                 placeholder="Email"
-                handler={handleInputChange}
-                value={credientials.email}
+                handler={control}
+                errMsg={""}
             />
-            <FormInput
+            <AuthInput
                 type="password"
                 name="password"
                 placeholder="Password"
-                handler={handleInputChange}
-                value={credientials.password}
+                handler={control}
+                errMsg={""}
             />
-            <FormInput
+            <AuthInput
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
-                handler={handleInputChange}
-                value={credientials.confirmPassword}
+                handler={control}
+                errMsg={""}
             />
             <FormActionButton submitBtnTxt="Register" />
         </form>
     </>)
-    }
-    
+        }

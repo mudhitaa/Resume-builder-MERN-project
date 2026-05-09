@@ -1,33 +1,25 @@
-import {  useState, type ChangeEvent } from "react"
-import { FormInput } from "../../from/Input";
+import { useForm } from "react-hook-form";
 import { FormActionButton } from "../../from/Button";
 import { type Icredientials } from "../../types/AuthTypes";
 import { useNavigate } from "react-router";
-import type { SyntheticEvent } from "react";
+import { AuthInput } from "../../from/AuthInput";
+
 export default function LoginForm() { 
 
     const navigate = useNavigate()
-    const [credientials,setCredientials]= useState<Icredientials>({ 
-        email:"", 
-        password:"" })
+    const {handleSubmit,control}= useForm<Icredientials>({
+        defaultValues:{
+            email:"",
+            password:""
+        }
+    })
 
-    const handleInputChange =(ev:ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement
-    >)=>{
-                    const name =ev.target.name
-                    setCredientials({
-                        ...credientials,
-                        [name]:ev.target.value
-                    })
-                }
-
-    const handleLogin = (ev: SyntheticEvent<HTMLFormElement>) => {
-        ev.preventDefault();
-
+    const handleLoginSubmit = (data:Icredientials) => {
         // TEMPORARY FRONTEND AUTH
+        console.log("Login data:", data);
         if (
-            credientials.email === "admin@admin.com" &&
-            credientials.password === "admin"
+            data.email === "admin@admin.com" &&
+            data.password === "admin"
         ) {
             navigate("/resume-builder");
         } else {
@@ -37,20 +29,20 @@ export default function LoginForm() {
 
     return(<>
         
-         <form className="flex flex-col gap-4 p-4" onSubmit={handleLogin}>
-            <FormInput
+         <form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit(handleLoginSubmit)}>
+            <AuthInput
                 type="email"
                 name="email"
                 placeholder="Email"
-                handler={handleInputChange}
-                value={credientials.email}
+                handler={control}
+                errMsg={""}
             />
-            <FormInput
+            <AuthInput
                 type="password"
                 name="password"
                 placeholder="Password"
-                handler={handleInputChange}
-                value={credientials.password}
+                handler={control}
+                errMsg={""}
             />
             <FormActionButton submitBtnTxt="Login" />
         </form>
