@@ -7,15 +7,46 @@ import { type IResumeData } from "../../types/FormTypes";
 export const ResumeLayout = () => {
     const [resumeData, setResumeData] = useState<IResumeData>({
         fullname: "",
-        email: "",
-        phone: "",
-        skills: "",
-        summary: "",
-        address: "",
-        template: "",
-        font: "",
-        education: [],
-        experience: []
+    email: "",
+    phone: "",
+    address: "",
+
+    linkedin: "",
+    github: "",
+
+    summary: "",
+
+    skills: [],
+
+    template: "modern",
+    font: "poppins",
+
+    accentColor: "",
+
+    education: [
+        {
+            id: crypto.randomUUID(),
+            school: "",
+            degree: "",
+            startYear: "",
+            endYear: ""
+        }
+    ],
+
+    experience: [
+        {
+            id: crypto.randomUUID(),
+            company: "",
+            position: "",
+            startDate: "",
+            endDate: "",
+            description: ""
+        }
+    ],
+
+    projects: [],
+
+    certifications: []
     });
 
     return (

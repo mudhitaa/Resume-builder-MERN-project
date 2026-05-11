@@ -1,9 +1,9 @@
-import { type IResumeData } from "../../../types/FormTypes"
+import {type IResumePreviewProps } from "../../../types/PreviewTypes"
 
-export const EducationPreview = ({resumeData}: {resumeData: IResumeData}) => {
+export const EducationPreview = ({resumeData,accentClass}: Readonly<IResumePreviewProps>) => {
     return(
             <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-3 border-b pb-1">
+                    <h3 className={`text-xl font-semibold mb-3 border-b pb-1 ${accentClass}`}>
                         Education
                     </h3>
 
@@ -12,8 +12,8 @@ export const EducationPreview = ({resumeData}: {resumeData: IResumeData}) => {
                             No education added
                         </p>
                     ) : (
-                        resumeData.education.map((edu, i) => (
-                            <div key={i} className="mb-4">
+                        resumeData.education.map((edu) => (
+                            <div key={edu.id} className="mb-4">
 
                                 {/* School */}
                                 <p className="font-semibold text-gray-800">

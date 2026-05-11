@@ -1,15 +1,16 @@
-import type { IResumeData } from "../../../types/FormTypes"
 
-export const ExperiencePreview = ({resumeData}: {resumeData: IResumeData}) => {
+import type { IResumePreviewProps } from "../../../types/PreviewTypes"
+
+export const ExperiencePreview = ({resumeData,accentClass}: Readonly<IResumePreviewProps>) => {
     return(
                 <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2">Experience</h3>
+                    <h3 className={`text-xl font-semibold mb-2 ${accentClass}`}>Experience</h3>
 
                     {resumeData.experience.length === 0 ? (
                         <p className="text-gray-400">No experience added</p>
                     ) : (
-                        resumeData.experience.map((exp, i) => (
-                            <div key={i} className="mb-3">
+                        resumeData.experience.map((exp) => (
+                            <div key={exp.id} className="mb-3">
                                 <p className="font-semibold">
                                     {exp.position} @ {exp.company}
                                 </p>

@@ -1,13 +1,9 @@
-import type { IResumeData } from "../../../types/FormTypes";
+import type { IResumePreviewProps } from "../../../types/PreviewTypes";
 
-export default function PersonalPreview({
-    resumeData
-}: {
-    resumeData: IResumeData;
-}) {
+export default function PersonalPreview({resumeData,accentClass}: Readonly<IResumePreviewProps>) {
     return (
         <>
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className={`text-3xl font-bold text-gray-800 ${accentClass}`}>
                 {resumeData.fullname || "Your Name"}
             </h1>
 
@@ -21,6 +17,12 @@ export default function PersonalPreview({
 
             <p className="text-gray-500">
                 {resumeData.address}
+            </p>
+            <p className="text-gray-500">
+                {resumeData.github}
+            </p>
+            <p className="text-gray-500">
+                {resumeData.linkedin}
             </p>
         </>
     );

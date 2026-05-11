@@ -10,6 +10,6 @@ export interface IOutlinedLink{
 
 export const RedirectLink =({url,txt,className}:Readonly<IOutlinedLink>)=>{
     return(
-        <NavLink to={url} className={`${className}`}>{txt}</NavLink>
+        <NavLink to={url} className={` ${className}`}>{txt}</NavLink>
     )
 }

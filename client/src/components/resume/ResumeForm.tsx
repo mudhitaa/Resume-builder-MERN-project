@@ -1,7 +1,5 @@
 
 import {type ChangeEvent } from "react";
-import { Heading2, Text } from "../typography/Heading";
-import {FormLable,FormSelect} from "../../from/Input";
 import { FormActionButton } from "../../from/Button";
 import EducationSection from "../../from/resumeform/EducationSection";
 import { type IResumeFormProps } from "../../types/FormTypes";
@@ -9,6 +7,8 @@ import WorkExperienceSection from "../../from/resumeform/WorkExperienceSection";
 import { PersonalInfoSection } from "../../from/resumeform/PersonalInfo";
 import { SummarySection } from "../../from/resumeform/Summary";
 import { Skills } from "../../from/resumeform/Skills";
+import { Customization } from "../../from/resumeform/Customization";
+import { Heading2 } from "../typography/Heading";
 
 
 
@@ -77,17 +77,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
         };
 
             
-    const templateOptions = [
-        { label: "Modern Template", value: "modern" },
-        { label: "Classic Template", value: "classic" },
-        { label: "Minimal Template", value: "minimal" }
-    ];
-
-    const fontOptions = [
-        { label: "Poppins", value: "poppins" },
-        { label: "Roboto", value: "roboto" },
-        { label: "Inter", value: "inter" }
-    ];
 
     return (
         <>
@@ -116,6 +105,7 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                                 experience: [
                                     ...resumeData.experience,
                                     {
+                                        id: crypto.randomUUID(),
                                         company: "",
                                         position: "",
                                         startDate: "",
@@ -145,6 +135,7 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                                         education: [
                                             ...resumeData.education,
                                             {
+                                                id: crypto.randomUUID(),
                                                 school: "",
                                                 degree: "",
                                                 startYear: "",
@@ -165,40 +156,16 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                     />
 
                 {/* SKILLS */}
-                <Skills handleInputChange={handleInputChange} resumeData={resumeData} />
+                <Skills
+                    resumeData={resumeData}
+                    setResumeData={setResumeData}
+                />
+
+
 
 
                 {/* CUSTOMIZATION */}
-                <div className="mb-8">
-
-                    <Text className="font-semibold mb-4 text-gray-700">
-                        Resume Customization
-                    </Text>
-
-                    <div className="flex  flex-col gap-4">
-                        <div className="">
-                            <FormLable htmlFor="template">Template:</FormLable>
-                            <FormSelect
-                            name="template"
-                            options={templateOptions}
-                            handler={handleSelectChange}
-                            value={resumeData.template}
-                        />
-                        </div>
-                        
-                        <div>
-                        <FormLable htmlFor="font">Font:</FormLable>
-                        <FormSelect
-                            name="font"
-                            options={fontOptions}
-                            handler={handleSelectChange}
-                            value={resumeData.font}
-                        />
-
-                        </div>
-                        
-                    </div>
-                </div>
+                <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
 
                 <FormActionButton
                     submitBtnTxt="Create Resume"

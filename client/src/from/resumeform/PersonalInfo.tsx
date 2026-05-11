@@ -44,6 +44,20 @@ return(
                             handler={handleInputChange}
                             value={resumeData.address}
                         />
+                        <FormInput
+                            type="text"
+                            name="github"
+                            placeholder="Github"
+                            handler={handleInputChange}
+                            value={resumeData.github}
+                        />
+                        <FormInput
+                            type="text"
+                            name="linkedin"
+                            placeholder="Linkedin"
+                            handler={handleInputChange}
+                            value={resumeData.linkedin}
+                        />
 
                     </div>
                 </div>
