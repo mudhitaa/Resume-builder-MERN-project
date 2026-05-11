@@ -19,17 +19,17 @@ export default function ResumeLive({resumeData,className}: Readonly<IResumePrevi
 
     // ACCENT COLORS
 const accentClass =
-  resumeData.accentColor === "black"
-    ? "text-black"
+  resumeData.accentColor === "rose"
+    ? "text-rose-700"
     :resumeData.accentColor === "blue"
     ? "text-blue-900"
-    : resumeData.accentColor === "slate"
-    ? "text-slate-700"
+    : resumeData.accentColor === "black"
+    ? "text-black"
     : resumeData.accentColor === "emerald"
     ? "text-emerald-800"
     : resumeData.accentColor === "amber"
     ? "text-amber-700"
-    : "text-rose-700";
+    : "text-slate-800";
             
 
     return (

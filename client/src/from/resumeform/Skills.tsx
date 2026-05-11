@@ -63,7 +63,7 @@ export const Skills = ({
     return (
         <div className="mb-8">
 
-            <Text className="font-semibold mb-4 text-gray-700">
+            <Text className="font-semibold  text-gray-700">
                 Skills
             </Text>
 
@@ -74,7 +74,7 @@ export const Skills = ({
 
                     <div
                         key={skill}
-                        className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full flex items-center gap-2"
+                        className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2"
                     >
                         {skill}
 

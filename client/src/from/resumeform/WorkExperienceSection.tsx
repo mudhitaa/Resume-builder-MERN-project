@@ -1,8 +1,23 @@
 import { AddButton, RemoveButton } from "../Button";
 import { FormInput, FormTextArea } from "../Input";
-import { type IWorkExperienceSectionProps } from "../../types/FormTypes";
+import { type ChangeEvent } from "react";
 import { Text } from "../../components/typography/Heading";
+import type { IExperience } from "../../types/FormTypes";
 
+
+
+export interface IWorkExperienceSectionProps {
+    experience: IExperience[];
+
+    handler: (
+            index: number,
+            ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    )=> void;
+
+    addExperience: () => void;
+
+    removeExperience: (index: number) => void;
+}
 
 export default function WorkExperienceSection({
     experience,
@@ -25,22 +40,6 @@ export default function WorkExperienceSection({
                         key={index}
                         className="border rounded-xl p-4 shadow-sm bg-gray-50"
                     >
-
-                        {/* HEADER */}
-                        <div className="flex justify-between items-center mb-4">
-
-                            <h3 className="font-semibold text-gray-700">
-                                #{index + 1}
-                            </h3>
-
-                            {experience.length > 0 && (
-                                <RemoveButton
-                                    type="Experience"
-                                    onClick={() => removeExperience(index)}
-                                />
-                            )}
-
-                        </div>
 
                         {/* FORM */}
                         <div className="flex flex-col gap-4">
@@ -101,8 +100,19 @@ export default function WorkExperienceSection({
                             
 
                         </div>
+                        
+                    
+                        <div className="flex justify-end mt-4">
+                            <RemoveButton
+                                type="Experience"
+                                onClick={() => removeExperience(index)}
+                            />
+                        </div>
+        
 
-                    </div>
+                        </div>
+
+                    
 
                 ))}
 

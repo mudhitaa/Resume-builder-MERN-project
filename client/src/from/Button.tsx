@@ -38,7 +38,7 @@ export const RemoveButton =({onClick,className}:Readonly<IAddButtonProps>)=>{
     <button
                     type="button"
                     onClick={onClick}
-                    className={`text-red-500 hover:text-red-700 cursor-pointer ${className}`}
+                    className={`text-red-500 hover:text-red-700 cursor-pointer  ${className}`}
                 >
                     Remove 
                 </button>

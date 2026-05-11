@@ -9,6 +9,8 @@ import { SummarySection } from "../../from/resumeform/Summary";
 import { Skills } from "../../from/resumeform/Skills";
 import { Customization } from "../../from/resumeform/Customization";
 import { Heading2 } from "../typography/Heading";
+import { ProjectsSection } from "../../from/resumeform/ProjectsSection";
+import { CertificationSection } from "../../from/resumeform/CretificationSection";
 
 
 
@@ -25,7 +27,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
         });
 
     };
-
     // SELECT HANDLER
     const handleSelectChange = (ev:ChangeEvent<
         HTMLSelectElement
@@ -37,7 +38,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
         });
 
     };
-
     // EDUCATION CHANGE HANDLER
     const handleEducationChange = (index: number,ev: ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement
@@ -56,7 +56,7 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
         });
 
     };
-
+    //experience handler
     const handleExperienceChange = (index: number,ev: ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement 
     >) => {
@@ -75,7 +75,46 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
 
          
         };
+    //certification handler
+    const handleProjectChange = (index: number,ev: ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement 
+    >) => {
+            const { name, value } = ev.target;
 
+            const updatedProjects=
+                [...resumeData.projects];
+            updatedProjects[index] = {
+                ...updatedProjects[index],
+                [name]: value
+            };
+            setResumeData({
+                ...resumeData,
+                projects: updatedProjects
+            });
+
+         
+        };
+    //certification handler
+    const handleCeertificatinChange = (index: number,ev: ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement 
+    >) => {
+            const { name, value } = ev.target;
+
+            const updatedCertifications=
+                [...resumeData.certifications];
+            updatedCertifications[index] = {
+                ...updatedCertifications[index],
+                [name]: value
+            };
+            setResumeData({
+                ...resumeData,
+                certifications: updatedCertifications
+            });
+
+         
+        };
+
+    
             
 
     return (
@@ -123,7 +162,29 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                             });
                         }}
                     />
-                
+                {/* projects */}
+                        <ProjectsSection projects={resumeData.projects} handler={handleProjectChange} 
+                        addProject={() => {
+                            setResumeData({
+                                ...resumeData,
+                                projects: [
+                                    ...resumeData.projects,
+                                    {
+                                        id: crypto.randomUUID(),
+                                        title:"",
+                                        description:"",
+                                        githubLink:"",
+                                    }
+                                ]
+                            });
+                        }}
+                        removeProject={(index) => {
+                            const filteredProjects = resumeData.projects.filter((_, ind) => ind !== index);
+                            setResumeData({
+                                ...resumeData,
+                                projects: filteredProjects
+                            });
+                        }}/>
             
                 {/* EDUCATION */}
                     <EducationSection
@@ -160,6 +221,36 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                     resumeData={resumeData}
                     setResumeData={setResumeData}
                 />
+                {/* certification */}
+                    <CertificationSection 
+                    certification={resumeData.certifications} 
+                    handler={handleCeertificatinChange}
+                    addCertification={() => {
+                            setResumeData({
+                                ...resumeData,
+                                certifications: [
+                                    ...resumeData.certifications,
+                                    {
+                                        id: crypto.randomUUID(),
+                                        name: "",
+                                        issuer: "",
+                                        date: "",
+                                        description: "",
+                                        credentialId: "",
+                                        credentialUrl: ""
+                                    }
+                                ]
+                            });
+                        }}
+                    removeCertification={(index: number) => {
+                            const filtered = resumeData.certifications.filter((_, i) => i !== index);
+                    
+                            setResumeData({
+                                ...resumeData,
+                                certifications: filtered
+                            });
+                    }}
+                    />
 
 
 

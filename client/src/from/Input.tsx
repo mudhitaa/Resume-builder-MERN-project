@@ -11,6 +11,7 @@ export const FormInput =({type,name,placeholder, handler, value}:Readonly<IFormI
                 onChange={handler}
                 className="p-2 border rounded  focus:outline-blue-800"
                 value={value}
+                
             />
        </>
     )

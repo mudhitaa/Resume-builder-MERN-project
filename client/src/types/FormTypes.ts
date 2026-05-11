@@ -1,5 +1,6 @@
 import {type ChangeEvent } from "react";
 
+
 export interface IResumeData {
     fullname: string;
     email: string;
@@ -21,31 +22,6 @@ export interface IResumeData {
     accentColor: string;
 }
 
-
-
-export interface IEducation {
-    id: string;
-    school: string;
-    degree: string;
-    startYear: string;
-    endYear: string;
-}
-
-export interface IEducationSectionProps {
-    education: IEducation[];
-
-    handler: (
-        index: number,
-        ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-        ) => void;
-
-    addEducation: () => void;
-
-    removeEducation: (index: number) => void;
-}
-
-
-
 export interface IExperience {
     id: string;
     company: string;
@@ -55,20 +31,13 @@ export interface IExperience {
     description: string;
 }
 
-
-export interface IWorkExperienceSectionProps {
-    experience: IExperience[];
-
-    handler: (
-            index: number,
-            ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    )=> void;
-
-    addExperience: () => void;
-
-    removeExperience: (index: number) => void;
+export interface IEducation {
+    id: string;
+    school: string;
+    degree: string;
+    startYear: string;
+    endYear: string;
 }
-
 
 
 export interface IResumeComponentProps {
@@ -82,15 +51,8 @@ export interface IResumeFormProps {
     className?: string;
 }
 
-
-export interface IProjects{
-    title:string;
-    techStack:string[];
-    description:string;
-    githubLink:string;
-    liveLink:string;
-}
 export interface ICertifications{
+    id:string;
     name:string;
     issuer:string;
     date:string;
@@ -99,11 +61,10 @@ export interface ICertifications{
     credentialUrl:string;
 }
 
-
-export interface ICustomizationSectionProps {
-    resumeData: IResumeData;
-
-    handleSelectChange: (
-        ev: ChangeEvent<HTMLSelectElement>
-    ) => void;
+export interface IProjects{
+    id:string;
+    title:string;
+    description:string;
+    githubLink:string;
 }
+

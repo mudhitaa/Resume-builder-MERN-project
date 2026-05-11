@@ -1,4 +1,5 @@
 import type { ChangeEvent } from "react";
+import { type KeyboardEvent } from "react";
 
 export interface IFormInput{
     type:string;
@@ -6,6 +7,7 @@ export interface IFormInput{
     placeholder:string;
     handler?: (ev:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>void;
     value?: string;
+    onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 export interface IFormLable{
     htmlFor:string;

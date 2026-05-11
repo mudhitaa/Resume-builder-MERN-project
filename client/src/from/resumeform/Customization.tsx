@@ -1,6 +1,15 @@
 import { Text } from "../../components/typography/Heading";
-import type { ICustomizationSectionProps } from "../../types/FormTypes";
+import type { ChangeEvent } from "react";
 import { FormLable, FormSelect } from "../Input";
+import type { IResumeData } from "../../types/FormTypes";
+
+export interface ICustomizationSectionProps {
+    resumeData: IResumeData;
+
+    handleSelectChange: (
+        ev: ChangeEvent<HTMLSelectElement>
+    ) => void;
+}
 
 const templateOptions = [
     { label: "Modern Template", value: "modern" },

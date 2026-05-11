@@ -1,8 +1,22 @@
 // EducationSection.tsx
 import { Text } from "../../components/typography/Heading";
 import { FormInput } from "../Input";
-import {  type IEducationSectionProps } from "../../types/FormTypes";
 import { AddButton, RemoveButton } from "../Button";
+import type { ChangeEvent } from "react";
+import type { IEducation } from "../../types/FormTypes";
+
+export interface IEducationSectionProps {
+    education: IEducation[];
+
+    handler: (
+        index: number,
+        ev: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        ) => void;
+
+    addEducation: () => void;
+
+    removeEducation: (index: number) => void;
+}
 
 
 export default function EducationSection({
@@ -25,20 +39,6 @@ export default function EducationSection({
                         key={index}
                         className="border rounded-xl p-4 shadow-sm bg-gray-50"
                     >
-
-                        <div className="flex justify-between items-center mb-4">
-
-                            <h3 className="font-semibold text-gray-700">
-                                #{index + 1}
-                            </h3>
-
-                            {education.length > 0 && (
-                                <RemoveButton
-                                    onClick={() => removeEducation(index)}
-                                />
-                            )}
-
-                        </div>
 
                         <div className="flex flex-col gap-4">
 
@@ -86,6 +86,11 @@ export default function EducationSection({
 
                             </div>
 
+                        </div>
+                        <div className="flex justify-end mt-4">
+                                <RemoveButton
+                                    onClick={() => removeEducation(index)}
+                                />
                         </div>
 
                     </div>
