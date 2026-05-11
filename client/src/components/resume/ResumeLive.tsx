@@ -1,11 +1,14 @@
-import { type IResumePreviewProps } from "../../types/PreviewTypes";
-import { EducationPreview } from "./preview/EducationPreview";
-import { ExperiencePreview } from "./preview/ExperiencePreview";
-import PersonalPreview from "./preview/PersonalPreview";
-import { SkillsPreview } from "./preview/SkillsPreview";
-import { SummaryPreview } from "./preview/SummaryPreview";
 
-export default function ResumeLive({resumeData,className}: Readonly<IResumePreviewProps>) {
+import { type IResumePreviewProps } from "../../types/PreviewTypes";
+
+import ModernTemplate from "./templates/Mordern";
+import ClassicTemplate from "./templates/Classic";
+import MinimalTemplate from "./templates/Minimal";
+
+export default function ResumeLive({
+    resumeData,
+    className
+}: Readonly<IResumePreviewProps>) {
 
     // FONT STYLES
     const fontClass =
@@ -17,23 +20,10 @@ export default function ResumeLive({resumeData,className}: Readonly<IResumePrevi
             ? "font-playfair"
             : "font-inter";
 
-    // ACCENT COLORS
-const accentClass =
-  resumeData.accentColor === "rose"
-    ? "text-rose-700"
-    :resumeData.accentColor === "blue"
-    ? "text-blue-900"
-    : resumeData.accentColor === "black"
-    ? "text-black"
-    : resumeData.accentColor === "emerald"
-    ? "text-emerald-800"
-    : resumeData.accentColor === "amber"
-    ? "text-amber-700"
-    : "text-slate-800";
-            
 
     return (
-        <div className={` bg-white ${fontClass} rounded-2xl shadow-md p-6 ${className || ""}  `}
+        <div
+            className={`bg-white rounded-2xl shadow-md p-6 ${className || ""}`}
         >
 
             {/* TITLE */}
@@ -42,39 +32,33 @@ const accentClass =
             </h2>
 
             {/* RESUME CONTAINER */}
-            <div className="border border-dashed border-gray-300 rounded-xl p-8 text-black bg-white">
+            <div
+                className={`border border-dashed border-gray-300 rounded-xl bg-white ${fontClass}`}
+            >
 
-                {/* PERSONAL INFO */}
-                <PersonalPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                {resumeData.template === "modern" && (
+                    <ModernTemplate
+                        resumeData={resumeData}
+                        fontClass={fontClass}
+                    />
+                )}
 
-                {/* SUMMARY */}
-                <SummaryPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                {resumeData.template === "classic" && (
+                    <ClassicTemplate
+                        resumeData={resumeData}
+                        fontClass={fontClass}
+                    />
+                )}
 
-                {/* EXPERIENCE */}
-                <ExperiencePreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
-
-                {/* EDUCATION */}
-                <EducationPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
-
-                {/* SKILLS */}
-                <SkillsPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                {resumeData.template === "minimal" && (
+                    <MinimalTemplate
+                        resumeData={resumeData}
+                        fontClass={fontClass}
+                    />
+                )}
 
             </div>
         </div>
     );
 }
+

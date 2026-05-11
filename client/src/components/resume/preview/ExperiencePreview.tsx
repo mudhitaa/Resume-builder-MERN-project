@@ -12,15 +12,15 @@ export const ExperiencePreview = ({resumeData,accentClass}: Readonly<IResumePrev
                         resumeData.experience.map((exp) => (
                             <div key={exp.id} className="mb-3">
                                 <p className="font-semibold">
-                                    {exp.position} @ {exp.company}
+                                    {exp.position || "Frontend Developer"} @ {exp.company || "TechNova Solutions"}
                                 </p>
 
                                 <p className="text-sm text-gray-500">
-                                    {exp.startDate} - {exp.endDate}
+                                    {exp.startDate || "2022-01"} - {exp.endDate || "2024-05"}
                                 </p>
 
                                 <p className="text-gray-700 text-sm">
-                                    {exp.description}
+                                    {exp.description || "Developed responsive React applications, improved UI performance by 35%, and collaborated with backend teams to integrate REST APIs."}
                                 </p>
                             </div>
                         ))

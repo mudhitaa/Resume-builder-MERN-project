@@ -1,0 +1,69 @@
+// templates/Classic.tsx
+
+import type { ITemplateProps } from "../../../types/PreviewTypes";
+
+import PersonalPreview from "../preview/PersonalPreview";
+import { SummaryPreview } from "../preview/SummaryPreview";
+import { ExperiencePreview } from "../preview/ExperiencePreview";
+import { EducationPreview } from "../preview/EducationPreview";
+import { SkillsPreview } from "../preview/SkillsPreview";
+import { ProjectsPreview } from "../preview/ProjectsPreview";
+import { CertificationPreview } from "../preview/CertificationPreview";
+
+export default function ClassicTemplate({
+    resumeData,
+    fontClass,
+    accentClass,
+}: Readonly<ITemplateProps>) {
+
+    return (
+        <div className={`bg-white p-10 ${fontClass}`}>
+
+            {/* ================= HEADER ================= */}
+            <header className="border-b border-gray-400 pb-6 text-center">
+
+                <PersonalPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+            </header>
+
+            {/* ================= CONTENT ================= */}
+            <main className="mt-8 space-y-10">
+
+                <SummaryPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+                <ExperiencePreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+                <ProjectsPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+                <EducationPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+                <SkillsPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+                <CertificationPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+
+            </main>
+
+        </div>
+    );
+}

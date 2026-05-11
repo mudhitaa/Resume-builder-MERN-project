@@ -6,3 +6,8 @@ export interface IResumePreviewProps {
     className?: string;
 }
 
+export interface ITemplateProps {
+    resumeData:IResumeData;
+    className?:string
+    fontClass:string
+}

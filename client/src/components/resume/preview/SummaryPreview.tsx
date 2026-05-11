@@ -6,7 +6,7 @@ export const SummaryPreview = ({resumeData,accentClass}: Readonly<IResumePreview
                         Summary
                     </h3>
                     <p className="text-gray-700">
-                        {resumeData.summary || "Write your summary."}
+                        {resumeData.summary || "Passionate Full Stack Developer with experience building scalable web applications using React, Node.js, TypeScript, and MongoDB. Skilled in designing responsive user interfaces, developing REST APIs, and creating user-focused digital experiences."}
                     </p>
                 </div>
     )

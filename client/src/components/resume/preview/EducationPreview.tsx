@@ -17,17 +17,17 @@ export const EducationPreview = ({resumeData,accentClass}: Readonly<IResumePrevi
 
                                 {/* School */}
                                 <p className="font-semibold text-gray-800">
-                                    {edu.school || "School / University"}
+                                    {edu.school || "University of California"}
                                 </p>
 
                                 {/* Degree */}
                                 <p className="text-gray-700">
-                                    {edu.degree || "Degree"}
+                                    {edu.degree || "Bachelor of Science in Computer Science"}
                                 </p>
 
                                 {/* Years */}
                                 <p className="text-sm text-gray-500">
-                                    {edu.startYear || "Start"} - {edu.endYear || "End"}
+                                    {edu.startYear || "2016-08-10"} - {edu.endYear || "2020-05-10"}
                                 </p>
 
                             </div>

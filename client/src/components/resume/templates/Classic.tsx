@@ -1,43 +1,111 @@
-import type { IResumeData } from "../../../types/FormTypes";
+// templates/Classic.tsx
+
+import type { ITemplateProps } from "../../../types/PreviewTypes";
+
+import { SummaryPreview } from "../preview/SummaryPreview";
+import { ExperiencePreview } from "../preview/ExperiencePreview";
+import { EducationPreview } from "../preview/EducationPreview";
+import { SkillsPreview } from "../preview/SkillsPreview";
+import { ProjectsPreview } from "../preview/ProjectPreview";
+import { CertificationPreview } from "../preview/CertificationPreview";
 
 export default function ClassicTemplate({
-    resumeData
-}: {
-    resumeData: IResumeData;
-}) {
+    resumeData,
+    fontClass,
+    
+}: Readonly<ITemplateProps>) {
+
+       // ACCENT COLORS
+    const accentClass =
+    resumeData.accentColor === "rose"
+        ? "text-rose-700"
+        :resumeData.accentColor === "blue"
+        ? "text-blue-900"
+        : resumeData.accentColor === "black"
+        ? "text-black"
+        : resumeData.accentColor === "emerald"
+        ? "text-emerald-800"
+        : resumeData.accentColor === "amber"
+        ? "text-amber-700"
+        : "text-slate-800";
+
 
     return (
-        <div className="bg-white border p-10">
+        <div className={`bg-white p-12 ${fontClass}`}>
 
-            {/* CENTERED HEADER */}
-            <div className="text-center mb-8">
+            {/* ================= HEADER ================= */}
+            <header className="grid grid-cols-2 gap-10 border-b pb-8">
 
-                <h1 className="text-3xl font-serif font-bold">
-                    {resumeData.fullname || "Your Name"}
-                </h1>
+                {/* LEFT */}
+                <div>
 
-                <p className="text-gray-600 mt-2">
-                    {resumeData.email}
-                </p>
+                    <h1 className={`text-5xl uppercase tracking-wide font-light ${accentClass}`}>
+                        {resumeData.fullname || "Alexander Baker"}
+                    </h1>
 
-                <p className="text-gray-600">
-                    {resumeData.phone}
-                </p>
+               
+                </div>
 
-            </div>
+                {/* RIGHT */}
+                <div className="border-l pl-8 space-y-3 text-sm text-gray-700">
 
-            {/* SUMMARY */}
-            <section className="mb-6">
+                    <p>{resumeData.phone || "+1 (555) 123-4567"}</p>
 
-                <h2 className="uppercase tracking-wide border-b pb-2 font-bold">
-                    Professional Summary
-                </h2>
+                    <p className="break-all">
+                        {resumeData.email || "alexander.baker@gmail.com"}
+                    </p>
+                    <p>{resumeData.address || "Los Angeles, California, USA"}</p>
+                    <p>{resumeData.linkedin || "linkedin.com/in/alexbaker"}</p>
+                    <span>{resumeData.github || "github.com/alexbaker"}</span>
 
-                <p className="mt-3 text-gray-700">
-                    {resumeData.summary}
-                </p>
+                </div>
 
-            </section>
+            </header>
+
+            {/* ================= BODY ================= */}
+            <main className="grid grid-cols-12 gap-10 mt-10">
+
+                {/* LEFT */}
+                <section className="col-span-8 space-y-12">
+
+                    <SummaryPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                    <ExperiencePreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                    <ProjectsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                </section>
+
+                {/* RIGHT */}
+                <aside className="col-span-4 border-l pl-8 space-y-10">
+
+                    <EducationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                    <SkillsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                    <CertificationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                </aside>
+
+            </main>
 
         </div>
     );

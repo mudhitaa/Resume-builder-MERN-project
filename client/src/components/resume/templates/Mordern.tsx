@@ -1,43 +1,88 @@
-import type { IResumeData } from "../../../types/FormTypes";
+// templates/Modern.tsx
+
+import type { ITemplateProps } from "../../../types/PreviewTypes";
+
+import PersonalPreview from "../preview/PersonalPreview";
+import { SummaryPreview } from "../preview/SummaryPreview";
+import { ExperiencePreview } from "../preview/ExperiencePreview";
+import { EducationPreview } from "../preview/EducationPreview";
+import { SkillsPreview } from "../preview/SkillsPreview";
+import { CertificationPreview } from "../preview/CertificationPreview";
+import { ProjectsPreview } from "../preview/ProjectPreview";
 
 export default function ModernTemplate({
-    resumeData
-}: {
-    resumeData: IResumeData;
-}) {
+    resumeData,
+    fontClass,
+}: Readonly<ITemplateProps>) {
+
+   // ACCENT COLORS
+    const accentClass =
+    resumeData.accentColor === "rose"
+        ? "text-rose-700"
+        :resumeData.accentColor === "blue"
+        ? "text-blue-900"
+        : resumeData.accentColor === "black"
+        ? "text-black"
+        : resumeData.accentColor === "emerald"
+        ? "text-emerald-800"
+        : resumeData.accentColor === "amber"
+        ? "text-amber-700"
+        : "text-slate-800";
+
 
     return (
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className={`bg-white p-8 ${fontClass}`}>
 
-            {/* HEADER */}
-            <div className="border-b pb-5 mb-5">
+            {/*header */}
+            <header className="border-b-2 border-gray-200 pb-4">
+                <PersonalPreview
+                    resumeData={resumeData}
+                    accentClass={accentClass}
+                />
+            </header>
 
-                <h1 className="text-4xl font-bold text-gray-900">
-                    {resumeData.fullname || "Your Name"}
-                </h1>
+            {/* main*/}
+            <main className="grid grid-cols-3 gap-8 mt-8">
 
-                <p className="text-gray-500 mt-2">
-                    {resumeData.email}
-                </p>
+                {/* LEFT*/}
+                <section className="col-span-2 space-y-8">
 
-                <p className="text-gray-500">
-                    {resumeData.phone}
-                </p>
+                    <SummaryPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
 
-            </div>
+                    <ExperiencePreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+                    <ProjectsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
 
-            {/* SUMMARY */}
-            <section className="mb-6">
+                </section>
 
-                <h2 className="text-xl font-semibold mb-2 text-blue-600">
-                    Summary
-                </h2>
+                {/* RIGHT  */}
+                <aside className="space-y-8">
 
-                <p className="text-gray-700">
-                    {resumeData.summary}
-                </p>
+                    <EducationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
 
-            </section>
+                    <SkillsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+                    <CertificationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                </aside>
+
+            </main>
 
         </div>
     );
