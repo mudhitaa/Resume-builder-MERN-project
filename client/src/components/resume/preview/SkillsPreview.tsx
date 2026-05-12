@@ -5,7 +5,7 @@ export const SkillsPreview = ({resumeData,accentClass}: Readonly<IResumePreviewP
     return (
         <div className="mt-6">
 
-            <h3 className={`text-xl font-semibold mb-2 ${accentClass}`}>
+            <h3 className={`text-lg font-bold border-b pb-1 mb-4 ${accentClass}`}>
                 Skills
             </h3>
 

@@ -1,21 +1,21 @@
-// templates/Modern.tsx
+// templates/Classic.tsx
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
 
-import PersonalPreview from "../preview/PersonalPreview";
 import { SummaryPreview } from "../preview/SummaryPreview";
 import { ExperiencePreview } from "../preview/ExperiencePreview";
 import { EducationPreview } from "../preview/EducationPreview";
 import { SkillsPreview } from "../preview/SkillsPreview";
-import { CertificationPreview } from "../preview/CertificationPreview";
 import { ProjectsPreview } from "../preview/ProjectPreview";
+import { CertificationPreview } from "../preview/CertificationPreview";
 
-export default function ModernTemplate({
+export default function ClassicTemplate({
     resumeData,
     fontClass,
+    
 }: Readonly<ITemplateProps>) {
 
-   // ACCENT COLORS
+       // ACCENT COLORS
     const accentClass =
     resumeData.accentColor === "rose"
         ? "text-rose-700"
@@ -31,21 +31,42 @@ export default function ModernTemplate({
 
 
     return (
-        <div className={`bg-white p-8 ${fontClass}`}>
+        <div className={`bg-white p-12 ${fontClass}`}>
 
-            {/*header */}
-            <header className="border-b-2 border-gray-200 pb-4">
-                <PersonalPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+            {/* ================= HEADER ================= */}
+            <header className="grid grid-cols-2 gap-10 pb-5">
+
+                {/* LEFT */}
+                <div>
+
+                    <h1 className={`text-5xl uppercase tracking-wide font-light ${accentClass}`}>
+                        {resumeData.fullname || "Alexander Baker"}
+                    </h1>
+
+               
+                </div>
+
+                {/* RIGHT */}
+                <div className="border-l pl-8 space-y-3 text-sm text-gray-700">
+
+                    <p>{resumeData.phone || "+1 (555) 123-4567"}</p>
+
+                    <p className="break-all">
+                        {resumeData.email || "alexander.baker@gmail.com"}
+                    </p>
+                    <p>{resumeData.address || "Los Angeles, California, USA"}</p>
+                    <p>{resumeData.linkedin || "linkedin.com/in/alexbaker"}</p>
+                    <span>{resumeData.github}</span>
+
+                </div>
+
             </header>
 
-            {/* main*/}
-            <main className="grid grid-cols-3 gap-8 mt-8">
+            {/* ================= BODY ================= */}
+            <main className="grid grid-cols-12 gap-10 mt-5">
 
-                {/* LEFT*/}
-                <section className="col-span-2 space-y-8">
+                {/* LEFT */}
+                <section className="col-span-8 space-y-12">
 
                     <SummaryPreview
                         resumeData={resumeData}
@@ -56,6 +77,7 @@ export default function ModernTemplate({
                         resumeData={resumeData}
                         accentClass={accentClass}
                     />
+
                     <ProjectsPreview
                         resumeData={resumeData}
                         accentClass={accentClass}
@@ -63,8 +85,8 @@ export default function ModernTemplate({
 
                 </section>
 
-                {/* RIGHT  */}
-                <aside className="space-y-8">
+                {/* RIGHT */}
+                <aside className="col-span-4 border-l pl-8 space-y-10">
 
                     <EducationPreview
                         resumeData={resumeData}
@@ -75,6 +97,7 @@ export default function ModernTemplate({
                         resumeData={resumeData}
                         accentClass={accentClass}
                     />
+
                     <CertificationPreview
                         resumeData={resumeData}
                         accentClass={accentClass}

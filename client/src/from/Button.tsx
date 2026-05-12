@@ -2,7 +2,8 @@ import type { ReactNode } from "react"
 
 interface IFormActionButtonProps{
     submitBtnTxt?:ReactNode,
-    disabled?:boolean
+    disabled?:boolean,
+    className?: string
 }
 interface IAddButtonProps{
     onClick: () => void,
@@ -10,22 +11,36 @@ interface IAddButtonProps{
     className?: string
 }
 
-export const FormActionButton = ({submitBtnTxt='Submit', disabled=false}:Readonly<IFormActionButtonProps>)=>{
-    return(
-        <>
-        <button disabled={disabled}></button>
-        <button type="submit" 
-        className="w-full h-10 hover:cursor-pointer bg-blue-900 rounded-md text-white transition hover:scale-98  disabled:bg-red-800/4 disabled:cursor-not-allowed">{submitBtnTxt}</button>
-        </>
-    )
-}
+export const FormActionButton = ({
+    submitBtnTxt = "Submit",
+    className = "",
+}: Readonly<IFormActionButtonProps>) => {
+    return (
+        <button
+            type="submit"
+            className={`
+                w-full
+                px-5 py-3
+                hover:cursor-pointer
+                bg-blue-900
+                rounded-md
+                text-white
+                transition
+                hover:scale-[0.98]
+                ${className}
+            `}
+        >
+            {submitBtnTxt}
+        </button>
+    );
+};
 
 export const AddButton =({onClick,type,className}:Readonly<IAddButtonProps>)=>{
     return(<>
     <button
                     type="button"
                     onClick={onClick}
-                    className={`bg-blue-100 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-200 transition cursor-pointer ${className}`}
+                    className={`bg-blue-100  text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-200 transition cursor-pointer ${className}`}
                 >
                     + Add {type}
                 </button>

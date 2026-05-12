@@ -31,7 +31,7 @@ export default function MinimalTemplate({
         <div className={`bg-white p-10 ${fontClass}`}>
 
             {/* ================= HEADER ================= */}
-            <header className="border-b pb-6">
+            <header>
 
                 <h1 className={`text-4xl font-bold ${accentClass}`}>
                     {resumeData.fullname || "Alexander Baker"}
@@ -45,7 +45,7 @@ export default function MinimalTemplate({
 
                     <span>{resumeData.address || "Los Angeles, California, USA"}</span>
 
-                    <span>{resumeData.github || "github.com/alexbaker"}</span>
+                    <span>{resumeData.github }</span>
 
                     <span>{resumeData.linkedin || "linkedin.com/in/alexbaker"}</span>
                     

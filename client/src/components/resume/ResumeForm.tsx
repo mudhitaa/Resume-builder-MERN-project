@@ -121,11 +121,11 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
         <>
             <div className={`bg-white rounded-2xl shadow-md p-6 h-fit ${className || ""}`}>
 
-                {/* PAGE TITLE */}
-                <Heading2
-                    maintext="Resume Details"
-                    subtext="font-semibold text-gray-800 mb-6"
-                />
+                {/* PAGE TITLE */}                          
+                    <Heading2
+                        maintext="Resume Details"
+                        subtext="font-semibold text-gray-800 mb-6"
+                    />
 
                 {/* PERSONAL INFO */}
                 <PersonalInfoSection resumeData={resumeData} handleInputChange={handleInputChange} />
@@ -258,9 +258,17 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                 {/* CUSTOMIZATION */}
                 <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
 
-                <FormActionButton
-                    submitBtnTxt="Create Resume"
-                />
+                <div className="flex gap-4">
+
+                    <FormActionButton
+                        submitBtnTxt="Create PDF"
+                    />
+
+                    <FormActionButton
+                        submitBtnTxt="Save"
+                    />
+
+                </div>
 
             </div>
         </>

@@ -1,4 +1,16 @@
-// templates/Classic.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+// templates/Modern.tsx
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
 
@@ -7,60 +19,80 @@ import { SummaryPreview } from "../preview/SummaryPreview";
 import { ExperiencePreview } from "../preview/ExperiencePreview";
 import { EducationPreview } from "../preview/EducationPreview";
 import { SkillsPreview } from "../preview/SkillsPreview";
-import { ProjectsPreview } from "../preview/ProjectsPreview";
 import { CertificationPreview } from "../preview/CertificationPreview";
+import { ProjectsPreview } from "../preview/ProjectPreview";
 
-export default function ClassicTemplate({
+export default function ModernTemplate({
     resumeData,
     fontClass,
-    accentClass,
 }: Readonly<ITemplateProps>) {
 
+   // ACCENT COLORS
+    const accentClass =
+    resumeData.accentColor === "rose"
+        ? "text-rose-700"
+        :resumeData.accentColor === "blue"
+        ? "text-blue-900"
+        : resumeData.accentColor === "black"
+        ? "text-black"
+        : resumeData.accentColor === "emerald"
+        ? "text-emerald-800"
+        : resumeData.accentColor === "amber"
+        ? "text-amber-700"
+        : "text-slate-800";
+
+
     return (
-        <div className={`bg-white p-10 ${fontClass}`}>
+        <div className={`bg-white p-8 ${fontClass}`}>
 
-            {/* ================= HEADER ================= */}
-            <header className="border-b border-gray-400 pb-6 text-center">
-
+            {/*header */}
+            <header className="border-b-2 border-gray-200 pb-4">
                 <PersonalPreview
                     resumeData={resumeData}
                     accentClass={accentClass}
                 />
-
             </header>
 
-            {/* ================= CONTENT ================= */}
-            <main className="mt-8 space-y-10">
+            {/* main*/}
+            <main className="grid grid-cols-3 gap-8 mt-8">
 
-                <SummaryPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                {/* LEFT*/}
+                <section className="col-span-2 space-y-8">
 
-                <ExperiencePreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                    <SummaryPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
 
-                <ProjectsPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                    <ExperiencePreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+                    <ProjectsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
 
-                <EducationPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                </section>
 
-                <SkillsPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                {/* RIGHT  */}
+                <aside className="space-y-8">
 
-                <CertificationPreview
-                    resumeData={resumeData}
-                    accentClass={accentClass}
-                />
+                    <EducationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                    <SkillsPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+                    <CertificationPreview
+                        resumeData={resumeData}
+                        accentClass={accentClass}
+                    />
+
+                </aside>
 
             </main>
 
