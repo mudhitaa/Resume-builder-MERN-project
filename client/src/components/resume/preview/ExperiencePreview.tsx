@@ -1,10 +1,25 @@
 
 import type { IResumePreviewProps } from "../../../types/PreviewTypes"
+import { BsFillBriefcaseFill } from "react-icons/bs";
 
 export const ExperiencePreview = ({resumeData,accentClass}: Readonly<IResumePreviewProps>) => {
+    if (
+        !resumeData.experience ||
+        resumeData.experience.length === 0
+    ) {
+        return null;
+    }
     return(
                 <div className="mt-6">
-                    <h3 className={`text-lg font-bold border-b pb-1 mb-4 ${accentClass}`}>Experience</h3>
+                       <div className={`flex items-center gap-2 mb-3 border-b ${accentClass}`}>
+                           <BsFillBriefcaseFill className={`text-md mb-1`} />
+                           <h3
+                               className={`text-xl font-semibold  pb-1 flex-1  `}
+                           >
+                               Experience
+                           </h3>
+   
+                       </div>                 
 
                     {resumeData.experience.length === 0 ? (
                         <p className="text-gray-400">No experience added</p>

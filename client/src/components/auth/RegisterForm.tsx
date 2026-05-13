@@ -4,7 +4,7 @@ import { type IRegisterFormData } from "../../types/AuthTypes";
 import { AuthInput } from "../../from/AuthInput";
 import { RegisterDefaultValues, registerDTO } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import axiosInstance from "../../config/axiosConfig";
 
 
 export default function RegisterForm() { 
@@ -14,9 +14,17 @@ export default function RegisterForm() {
         resolver: zodResolver(registerDTO)
     })
 
-        const handleRegisterSubmit = (data:IRegisterFormData) => {
-        // TEMPORARY FRONTEND REGISTER LOGIC
-        console.log("Registration data:", data);
+        const handleRegisterSubmit = async (data:IRegisterFormData) => {
+            try{  
+            const response =  await axiosInstance.post('/users/add', 
+                {...data, expiresInMins:180},
+            )
+
+            console.log(response)
+        
+            }catch(exeception){
+                console.log(exeception)
+            }
     }
 
     return(<>
@@ -24,10 +32,10 @@ export default function RegisterForm() {
          <form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit(handleRegisterSubmit)}>
             <AuthInput
                 type="text"
-                name="name"
-                placeholder="Name"
+                name="username"
+                placeholder="Username"
                 handler={control}
-                errMsg={errors?.name?.message}
+                errMsg={errors?.username?.message}
             />
             <AuthInput
                 type="email"

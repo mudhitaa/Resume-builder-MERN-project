@@ -127,6 +127,9 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                         subtext="font-semibold text-gray-800 mb-6"
                     />
 
+                {/* CUSTOMIZATION */}
+                <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
+
                 {/* PERSONAL INFO */}
                 <PersonalInfoSection resumeData={resumeData} handleInputChange={handleInputChange} />
     
@@ -255,8 +258,7 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
 
 
 
-                {/* CUSTOMIZATION */}
-                <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
+                
 
                 <div className="flex gap-4">
 

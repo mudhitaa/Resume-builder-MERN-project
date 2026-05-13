@@ -1,13 +1,21 @@
 // templates/Minimal.tsx
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
-
 import { SummaryPreview } from "../preview/SummaryPreview";
 import { ExperiencePreview } from "../preview/ExperiencePreview";
 import { EducationPreview } from "../preview/EducationPreview";
 import { SkillsPreview } from "../preview/SkillsPreview";
 import { ProjectsPreview } from "../preview/ProjectPreview";
 import { CertificationPreview } from "../preview/CertificationPreview";
+
+
+import {
+    FaEnvelope,
+    FaPhone,
+    FaLocationDot,
+    FaGithub,
+    FaLinkedin,
+} from "react-icons/fa6";
 
 export default function MinimalTemplate({
     resumeData,
@@ -30,25 +38,59 @@ export default function MinimalTemplate({
     return (
         <div className={`bg-white p-10 ${fontClass}`}>
 
-            {/* ================= HEADER ================= */}
-            <header>
+           <header>
 
                 <h1 className={`text-4xl font-bold ${accentClass}`}>
                     {resumeData.fullname || "Alexander Baker"}
                 </h1>
 
-                <div className="flex flex-wrap gap-6 mt-3 text-sm text-gray-600">
+                <div className="flex flex-wrap gap-x-6 gap-y-3 mt-4 text-sm text-gray-600">
 
-                    <span>{resumeData.email || "alexander.baker@gmail.com"}</span>
+                    {/* EMAIL */}
+                    <div className="flex items-center gap-2">
+                        <FaEnvelope className="text-gray-500 text-sm" />
 
-                    <span>{resumeData.phone || "+1 (555) 123-4567"}</span>
+                        <span>
+                            {resumeData.email || "alexander.baker@gmail.com"}
+                        </span>
+                    </div>
 
-                    <span>{resumeData.address || "Los Angeles, California, USA"}</span>
+                    {/* PHONE */}
+                    <div className="flex items-center gap-2">
+                        <FaPhone className="text-gray-500 text-sm" />
 
-                    <span>{resumeData.github }</span>
+                        <span>
+                            {resumeData.phone || "+1 (555) 123-4567"}
+                        </span>
+                    </div>
 
-                    <span>{resumeData.linkedin || "linkedin.com/in/alexbaker"}</span>
-                    
+                    {/* ADDRESS */}
+                    <div className="flex items-center gap-2">
+                        <FaLocationDot className="text-gray-500 text-sm" />
+
+                        <span>
+                            {resumeData.address || "Los Angeles, California, USA"}
+                        </span>
+                    </div>
+
+                    {/* GITHUB */}
+                    {resumeData.github && (
+                        <div className="flex items-center gap-3">
+                            <FaGithub className="text-gray-500 text-sm" />
+                            <span>
+                                {resumeData.github}
+                            </span>
+                        </div>
+                    )}
+
+                    {/* LINKEDIN */}
+                    <div className="flex items-center gap-2">
+                        <FaLinkedin className="text-gray-500 text-sm" />
+
+                        <span>
+                            {resumeData.linkedin || "linkedin.com/in/alexbaker"}
+                        </span>
+                    </div>
 
                 </div>
 

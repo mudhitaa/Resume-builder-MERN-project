@@ -1,13 +1,19 @@
 import type { IResumePreviewProps } from "../../../types/PreviewTypes";
-
+import { TbTools } from "react-icons/tb";
 export const SkillsPreview = ({resumeData,accentClass}: Readonly<IResumePreviewProps>) => {
 
     return (
         <div className="mt-6">
 
-            <h3 className={`text-lg font-bold border-b pb-1 mb-4 ${accentClass}`}>
-                Skills
-            </h3>
+                    <div className={`flex items-center gap-2 mb-3 border-b ${accentClass}`}>
+                        <TbTools className={`text-lg mb-1`} />
+                        <h3
+                            className={`text-xl font-semibold  pb-1 flex-1  `}
+                        >
+                            Skills
+                        </h3>
+
+                    </div>
 
             {resumeData.skills.length === 0 ? (
 

@@ -1,13 +1,20 @@
 // templates/Classic.tsx
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
-
 import { SummaryPreview } from "../preview/SummaryPreview";
 import { ExperiencePreview } from "../preview/ExperiencePreview";
 import { EducationPreview } from "../preview/EducationPreview";
 import { SkillsPreview } from "../preview/SkillsPreview";
 import { ProjectsPreview } from "../preview/ProjectPreview";
 import { CertificationPreview } from "../preview/CertificationPreview";
+
+import {
+    FaEnvelope,
+    FaPhone,
+    FaLocationDot,
+    FaGithub,
+    FaLinkedin,
+} from "react-icons/fa6";
 
 export default function ClassicTemplate({
     resumeData,
@@ -33,34 +40,75 @@ export default function ClassicTemplate({
     return (
         <div className={`bg-white p-12 ${fontClass}`}>
 
-            {/* ================= HEADER ================= */}
-            <header className="grid grid-cols-2 gap-10 pb-5">
+        <header className="grid grid-cols-2 gap-10 pb-5">
+            {/* LEFT */}
+            <div>
+                <h1
+                    className={`
+                        text-5xl
+                        uppercase
+                        tracking-wide
+                        font-light
+                        ${accentClass}
+                    `}
+                >
+                    {resumeData.fullname || "Alexander Baker"}
+                </h1>
 
-                {/* LEFT */}
-                <div>
+            </div>
 
-                    <h1 className={`text-5xl uppercase tracking-wide font-light ${accentClass}`}>
-                        {resumeData.fullname || "Alexander Baker"}
-                    </h1>
+            {/* RIGHT */}
+            <div className="border-l pl-8 space-y-4 text-sm text-gray-700">
 
-               
+                {/* PHONE */}
+                <div className="flex items-center gap-3">
+                    <FaPhone className="text-gray-500 text-sm" />
+
+                    <p>
+                        {resumeData.phone || "+1 (555) 123-4567"}
+                    </p>
                 </div>
 
-                {/* RIGHT */}
-                <div className="border-l pl-8 space-y-3 text-sm text-gray-700">
-
-                    <p>{resumeData.phone || "+1 (555) 123-4567"}</p>
+                {/* EMAIL */}
+                <div className="flex items-center gap-3">
+                    <FaEnvelope className="text-gray-500 text-sm" />
 
                     <p className="break-all">
                         {resumeData.email || "alexander.baker@gmail.com"}
                     </p>
-                    <p>{resumeData.address || "Los Angeles, California, USA"}</p>
-                    <p>{resumeData.linkedin || "linkedin.com/in/alexbaker"}</p>
-                    <span>{resumeData.github}</span>
-
                 </div>
 
-            </header>
+                {/* ADDRESS */}
+                <div className="flex items-center gap-3">
+                    <FaLocationDot className="text-gray-500 text-sm" />
+
+                    <p>
+                        {resumeData.address || "Los Angeles, California, USA"}
+                    </p>
+                </div>
+
+                {/* LINKEDIN */}
+                <div className="flex items-center gap-3">
+                    <FaLinkedin className="text-gray-500 text-sm" />
+
+                    <p>
+                        {resumeData.linkedin || "linkedin.com/in/alexbaker"}
+                    </p>
+                </div>
+
+                    {/* GITHUB */}
+                    {resumeData.github && (
+                        <div className="flex items-center gap-3">
+                            <FaGithub className="text-gray-500 text-sm" />
+                            <span>
+                                {resumeData.github}
+                            </span>
+                        </div>
+                    )}
+
+            </div>
+
+        </header>
 
             {/* ================= BODY ================= */}
             <main className="grid grid-cols-12 gap-10 mt-5">

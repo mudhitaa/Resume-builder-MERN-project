@@ -1,7 +1,6 @@
 // templates/Classic.tsx
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
-
 import PersonalPreview from "../preview/PersonalPreview";
 import { SummaryPreview } from "../preview/SummaryPreview";
 import { ExperiencePreview } from "../preview/ExperiencePreview";
@@ -9,6 +8,7 @@ import { EducationPreview } from "../preview/EducationPreview";
 import { SkillsPreview } from "../preview/SkillsPreview";
 import { ProjectsPreview } from "../preview/ProjectPreview";
 import { CertificationPreview } from "../preview/CertificationPreview";
+
 
 export default function ClassicTemplate({
     resumeData,

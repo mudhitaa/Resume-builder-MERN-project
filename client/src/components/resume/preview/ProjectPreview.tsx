@@ -1,5 +1,5 @@
 // preview/ProjectsPreview.tsx
-
+import { FaCode } from "react-icons/fa";
 import type { IResumePreviewProps } from "../../../types/PreviewTypes";
 
 export function ProjectsPreview({
@@ -13,11 +13,15 @@ export function ProjectsPreview({
         <section>
 
             {/* SECTION TITLE */}
-            <h2
-                className={`text-lg font-bold border-b pb-1 mb-4 ${accentClass}`}
-            >
-                Projects
-            </h2>
+                    <div className={`flex items-center gap-2 mb-3 border-b ${accentClass}`}>
+                        <FaCode className={`text-lg mb-1`} />
+                        <h3
+                            className={`text-xl font-semibold  pb-1 flex-1  `}
+                        >
+                            Projects
+                        </h3>
+
+                    </div>
 
             {/* PROJECTS */}
             <div className="space-y-6">

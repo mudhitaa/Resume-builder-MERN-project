@@ -1,6 +1,6 @@
 
 import type { IResumePreviewProps } from "../../../types/PreviewTypes";
-
+import { PiCertificateBold } from "react-icons/pi";
 export function CertificationPreview({
     resumeData,
     accentClass,
@@ -16,12 +16,21 @@ export function CertificationPreview({
     return (
         <section>
 
-            {/* SECTION TITLE */}
-            <h2
-                className={`text-lg font-bold border-b pb-1 mb-4 ${accentClass}`}
-            >
-                Certifications
-            </h2>
+                <div className={`flex items-center gap-2 mb-3 border-b ${accentClass}`}>
+                        <PiCertificateBold  className={`text-lg mb-1`} />
+                        <h3
+                            className={`
+                                text-xl
+                                font-semibold
+                                pb-1
+                                flex-1
+                                
+                            `}
+                        >
+                           Certifications
+                        </h3>
+
+                    </div>
 
             {/* CERTIFICATIONS */}
             <div className="space-y-4">

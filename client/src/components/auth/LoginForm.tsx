@@ -1,38 +1,42 @@
 import { useForm } from "react-hook-form";
 import { FormActionButton } from "../../from/Button";
 import { LoginDefaultValues, type Icredientials } from "../../types/AuthTypes";
-import { useNavigate } from "react-router";
 import { AuthInput } from "../../from/AuthInput";
 import { loginDTO } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
-//import Cookies from "js-cookie";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../hooks/useAuth";
 
+export default  function LoginForm() { 
 
+    const navigate= useNavigate()
+    const {loginuser}= useAuth()
 
-export default function LoginForm() { 
-
-    const navigate = useNavigate()
     const {handleSubmit,control,formState:{errors}}= useForm<Icredientials>({
         defaultValues:LoginDefaultValues,
         resolver: zodResolver(loginDTO)
     })
+    
+    const handleLoginSubmit = async (data:Icredientials) => {
+            try{  
+                const userDetail = await loginuser(data)
+                navigate("/resume-builder")
+                console.log(userDetail)
+            }catch(exeception){
+                console.log(exeception)
+            }
+    }
 
-    const handleLoginSubmit = (data:Icredientials) => {
-        // TEMPORARY FRONTEND AUTH
-        console.log("Login data:", data);
-        navigate("/resume-builder");
-        // this gets response from backend
-    };
     
     return(<>
         
          <form className="flex flex-col gap-4 p-4" onSubmit={handleSubmit(handleLoginSubmit)}>
             <AuthInput
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="username"
+                placeholder="Username"
                 handler={control}
-                errMsg={errors?.email?.message}
+                errMsg={errors?.username?.message}
             />
             <AuthInput
                 type="password"
