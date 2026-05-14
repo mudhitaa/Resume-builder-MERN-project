@@ -20,3 +20,23 @@ Thumbs.db
 # IDE files
 .vscode/
 .idea/
+
+
+# dependencies
+node_modules
+
+# build
+dist
+build
+
+# env
+.env
+
+# logs
+*.log
+
+# vite
+client/dist
+
+# server build
+server/dist
