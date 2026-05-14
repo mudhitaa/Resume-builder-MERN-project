@@ -1,7 +1,5 @@
-# dependencies
-node_modules/
 
-# environment variables
+node_modules/
 .env
 
 # build outputs
@@ -22,16 +20,9 @@ Thumbs.db
 .idea/
 
 
-# dependencies
-node_modules
-
 # build
 dist
 build
-
-# env
-.env
-
 # logs
 *.log
 
