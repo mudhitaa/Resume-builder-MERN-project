@@ -19,7 +19,7 @@
 
     "sourceMap": true,
 
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false
   }
 }

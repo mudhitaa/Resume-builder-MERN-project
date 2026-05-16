@@ -7,20 +7,22 @@ import type { IAuthController } from "../types/authType";
 export default class AuthController implements IAuthController {
 
     userLogin(req: Request, res: Response , next:NextFunction): void {
-        res.json({
-            success: true,
-            message: "Login successful",
-            accessToken: "sample_token"
-        });
+       
+        next({code:400,
+            details:{username:"username is invalid from controller"},
+            message:"validation fail from userlogin"})
 
     }
 
 
     userRegister(req: Request, res: Response , next : NextFunction): void {
-        res.json({
-            success: true,
-            message: "Registration successful"
-        });
+        const data = req.body
+
+        res.status(201).json({
+        status: true,
+        data:data,
+        message: "register success"
+    });
 
     }
 

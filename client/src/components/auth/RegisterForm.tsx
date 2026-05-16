@@ -20,10 +20,13 @@ export default function RegisterForm() {
                 {...data, expiresInMins:180},
             )
 
+            console.log(data)
+
             console.log(response)
         
             }catch(exeception){
                 console.log(exeception)
+                console.log(data)
             }
     }
 
