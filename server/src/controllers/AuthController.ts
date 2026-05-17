@@ -72,7 +72,38 @@ export default class AuthController implements IAuthController {
 
 
     async getLoggedInUserProfile(req: Request, res: Response , next : NextFunction){
-        
+
+        try {
+          const userId = (req as any).user.sub;
+          const user = await UserModel.findById(userId).select("-password");
+          res.json({
+            status: true,
+            data: user,
+            message:"user fetched"
+          });
+    
+        } catch (err) {
+          next(err);
+        }
+    }
+
+    async updateProfile(req: Request, res: Response, next: NextFunction) {
+        try {
+        const userId = (req as any).user.sub;
+        const updated = await UserModel.findByIdAndUpdate(
+            userId,
+            req.body,
+            { new: true }
+        ).select("-password");
+
+        res.json({
+            status: true,
+            data: updated,
+        });
+
+        } catch (err) {
+        next(err);
+        }
     }
 
 }
