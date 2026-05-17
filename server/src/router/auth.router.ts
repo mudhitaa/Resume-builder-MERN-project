@@ -15,7 +15,7 @@ const authCtrl: IAuthController = new AuthController();
 
 authRouter.post("/login", bodyValidator(UserLoginSchema), authCtrl.userLogin);
 authRouter.post("/register",multerUploader.none(),bodyValidator(UserRegisterSchema), authCtrl.userRegister);
-
+authRouter.get("/me",authCtrl.getLoggedInUserProfile)
 
 
 

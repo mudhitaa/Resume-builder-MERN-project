@@ -4,21 +4,41 @@ import type { IAuthController } from "../types/authType";
 import bcrypt from "bcryptjs";
 import UserModel from "../models/User";
 import { IUser } from "../types/UserTypes";
+import jwt from "jsonwebtoken"
+import { jwtSecretConfig } from "../config/AppConfig";
 
 
 export default class AuthController implements IAuthController {
 
-    userLogin(req: Request, res: Response , next:NextFunction): void {
-          const data = req.body
+    async userLogin(req: Request, res: Response , next:NextFunction){
+        try {
+            const {username,password} = req.body
+            const userDetail = await UserModel.findOne({
+                username : username
+            })
+            if(!userDetail){
+                throw({code:422,message:"user not registered from userlogin"})
+            }else{
+                //pasd veerify
+                if(!bcrypt.compareSync(password,userDetail.password)){
+                    throw({code:422,message:"password does not match from userrlogin"})
+                }else{
+                    //VERIFIED
+                    const token = jwt.sign({sub:userDetail._id},jwtSecretConfig as string,{
+                        expiresIn:"1d"
+                    })
 
-        res.status(201).json({
-        status: true,
-        data:data,
-        message: "login success"
-    });
-        next({code:400,
-            details:{username:"username is invalid from controller"},
-            message:"validation fail from userlogin"})
+                    res.json({
+                        data:token,
+                        message:"User loggin success",
+                        status:true
+                    })
+
+                }
+            }
+        }catch(exception){
+            console.log(exception)
+        }
 
     }
 
@@ -48,6 +68,11 @@ export default class AuthController implements IAuthController {
             next(exception)
         }
 
+    }
+
+
+    async getLoggedInUserProfile(req: Request, res: Response , next : NextFunction){
+        
     }
 
 }

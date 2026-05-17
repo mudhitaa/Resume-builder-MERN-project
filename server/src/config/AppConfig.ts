@@ -7,3 +7,5 @@ export const CloudinaryConfig ={
     apiSecret: process.env.CLOUDINARY_API_SECRET,
 
 }
+
+export const jwtSecretConfig = process.env.JWT_SECRET
