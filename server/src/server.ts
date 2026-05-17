@@ -4,6 +4,13 @@ import cors from "cors";
 import router from "./router/router";
 import ExceptionHandlingMiddleware from "./middleware/ExceptionHandlingMiddleware";
 
+import connectDB from "./config/db";
+
+import dotenv from "dotenv";
+dotenv.config();
+
+
+
 const app: Application = express();
 
 const PORT = 9005;
@@ -34,6 +41,8 @@ app.use((req, res, next) => {
 // error middleware
 app.use(ExceptionHandlingMiddleware);
 
-app.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}`);
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
 });

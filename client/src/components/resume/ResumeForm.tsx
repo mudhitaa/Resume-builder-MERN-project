@@ -256,10 +256,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
                     />
 
 
-
-
-                
-
                 <div className="flex gap-4">
 
                     <FormActionButton
