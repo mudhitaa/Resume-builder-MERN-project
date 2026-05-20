@@ -29,15 +29,22 @@ export default class AuthController implements IAuthController {
                     })
 
                     res.json({
-                        data:token,
-                        message:"User loggin success",
-                        status:true
+                    status:true,
+                    message:"User login success",
+                    data:{
+                        token,
+                        user:{
+                            _id:userDetail._id,
+                            username:userDetail.username,
+                            email:userDetail.email
+                        }
+                    }
                     })
 
                 }
             }
         }catch(exception){
-            console.log(exception)
+            next(exception)
         }
 
     }

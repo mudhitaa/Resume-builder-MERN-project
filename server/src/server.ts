@@ -5,6 +5,8 @@ import router from "./router/router";
 import ExceptionHandlingMiddleware from "./middleware/ExceptionHandlingMiddleware";
 
 import connectDB from "./config/db";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,10 +15,22 @@ dotenv.config();
 
 const app: Application = express();
 
+app.use(cors({
+  origin: "http://localhost:5173"
+}))
+
+//xxs prevent
+app.use(helmet())
+
+const limiter= rateLimit({
+  windowMs:60000,
+  limit:30
+})
+app.use(limiter)
+
+
 const PORT = 9005;
 const HOST = "localhost";
-
-app.use(cors())
 
 
 //body parsing for server to read the data
