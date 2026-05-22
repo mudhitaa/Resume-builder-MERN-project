@@ -46,7 +46,7 @@ export default  function LoginForm() {
                 handler={control}
                 errMsg={errors?.password?.message}
             />
-            <FormActionButton submitBtnTxt="Login" />
+            <FormActionButton submitBtnTxt="Login" type="submit" />
         </form>
     </>)
     }

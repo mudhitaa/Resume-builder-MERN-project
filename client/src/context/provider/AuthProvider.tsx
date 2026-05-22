@@ -17,6 +17,7 @@ const AuthProvider = ({children}:Readonly<{children:ReactNode}>)=>{
                 '/auth/login',
                 {...data, expiresInMins:180},
             )
+            console.log("LOGIN RESPONSE:", response.data);
 
             Cookies.set(
                 "loginCookie",
@@ -55,9 +56,7 @@ const AuthProvider = ({children}:Readonly<{children:ReactNode}>)=>{
 
     //to check if token exists and auto login user it just runs once
     useEffect(()=>{
-
         const token = Cookies.get("loginCookie")
-
         if (token){
                 getLoggedInUser()
         }else{

@@ -14,8 +14,9 @@ import { CertificationSection } from "../../from/resumeform/CretificationSection
 
 
 
-export default function ResumeForm({resumeData,setResumeData,className}: Readonly<IResumeFormProps>) {
+export default function ResumeForm({resumeData,setResumeData,className,onSave}: Readonly<IResumeFormProps>) {
    
+
     // PERSONAL INFO HANDLER
     const handleInputChange = (ev:ChangeEvent<
         HTMLInputElement | HTMLTextAreaElement
@@ -114,7 +115,6 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
          
         };
 
-    
             
 
     return (
@@ -264,6 +264,8 @@ export default function ResumeForm({resumeData,setResumeData,className}: Readonl
 
                     <FormActionButton
                         submitBtnTxt="Save"
+                        onClick={onSave}
+                        type="button"
                     />
 
                 </div>

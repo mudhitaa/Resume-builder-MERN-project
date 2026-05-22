@@ -1,9 +1,10 @@
 import type { ReactNode } from "react"
 
 interface IFormActionButtonProps{
-    submitBtnTxt?:ReactNode,
-    disabled?:boolean,
-    className?: string
+    submitBtnTxt:ReactNode,
+    className?: string,
+    onClick?: () => void
+    type?:"button"|"submit"
 }
 interface IAddButtonProps{
     onClick: () => void,
@@ -13,11 +14,11 @@ interface IAddButtonProps{
 
 export const FormActionButton = ({
     submitBtnTxt = "Submit",
-    className = "",
+    className = "",onClick,type="button"
 }: Readonly<IFormActionButtonProps>) => {
     return (
         <button
-            type="submit"
+            type={type}
             className={`
                 w-full
                 px-5 py-3
@@ -29,6 +30,7 @@ export const FormActionButton = ({
                 hover:scale-[0.98]
                 ${className}
             `}
+            onClick={onClick}
         >
             {submitBtnTxt}
         </button>

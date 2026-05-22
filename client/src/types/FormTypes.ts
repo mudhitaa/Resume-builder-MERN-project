@@ -49,6 +49,7 @@ export interface IResumeFormProps {
     resumeData: IResumeData;
     setResumeData: React.Dispatch<React.SetStateAction<IResumeData>>;
     className?: string;
+    onSave?:()=>void
 }
 
 export interface ICertifications{
