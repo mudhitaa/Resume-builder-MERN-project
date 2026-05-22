@@ -4,6 +4,7 @@ import ResumeLive from "../../components/resume/ResumeLive";
 import bgImage from "../../assets/images/landingbg.jpg";
 import { type IResumeData } from "../../types/FormTypes";
 
+
 export const ResumeLayout = () => {
     const [resumeData, setResumeData] = useState<IResumeData>({
         fullname: "",
@@ -48,6 +49,8 @@ export const ResumeLayout = () => {
 
     certifications: []
     });
+
+   
 
     return (
         <div

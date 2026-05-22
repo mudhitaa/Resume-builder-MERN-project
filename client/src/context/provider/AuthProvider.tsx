@@ -66,11 +66,18 @@ const AuthProvider = ({children}:Readonly<{children:ReactNode}>)=>{
 
     },[])
 
+    const logoutUser = async () => { 
+            Cookies.remove("loginCookie");
+            setLoggedInUser(undefined);
+        
+    };
+
     return loading? (<><Spinner/></>):(
         <AuthContext.Provider value ={{
             loginuser:loginuser,
             getLoggedInUser:getLoggedInUser,
-            loggedInUser: loggedInUser
+            loggedInUser: loggedInUser,
+            logoutUser: logoutUser
         }}>
             {children}
         </AuthContext.Provider>

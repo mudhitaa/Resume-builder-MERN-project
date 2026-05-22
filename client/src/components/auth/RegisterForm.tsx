@@ -5,6 +5,8 @@ import { AuthInput } from "../../from/AuthInput";
 import { RegisterDefaultValues, registerDTO } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axiosInstance from "../../config/axiosConfig";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 
 export default function RegisterForm() { 
@@ -14,19 +16,20 @@ export default function RegisterForm() {
         resolver: zodResolver(registerDTO)
     })
 
+    const navigate = useNavigate()
+
         const handleRegisterSubmit = async (data:IRegisterFormData) => {
             try{  
-            const response =  await axiosInstance.post('/users/add', 
+            const response =  await axiosInstance.post('/auth/register', 
                 {...data, expiresInMins:180},
             )
-
-            console.log(data)
-
+            toast.success("registration success")
             console.log(response)
+            navigate('/login')
+
         
-            }catch(exeception){
-                console.log(exeception)
-                console.log(data)
+            }catch{
+                toast.error("registration error")
             }
     }
 

@@ -6,6 +6,7 @@ import { loginDTO } from "../../types/AuthTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
+import { toast } from "sonner";
 
 export default  function LoginForm() { 
 
@@ -23,7 +24,7 @@ export default  function LoginForm() {
                 navigate("/resume-builder")
                 console.log(userDetail)
             }catch(exeception){
-                console.log(exeception)
+                toast.error("login error")
             }
     }
 

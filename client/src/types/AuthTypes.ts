@@ -30,8 +30,8 @@ export const RegisterDefaultValues={
 
 
 export const registerDTO = z.object({
-    username: z.string().nonempty().nonoptional("userName is required"),
-    email: z.string().nonempty().nonoptional("Email is required"),
-    password: z.string().nonempty().nonoptional("Password is required"),
-    confirmPassword: z.string().nonempty().nonoptional("Confirm Password is required"),
+    username: z.string().nonempty("userName is required").nonoptional(),
+    email: z.string().nonempty("Email is required").nonoptional(),
+    password: z.string().nonempty("Password is required").nonoptional(),
+    confirmPassword: z.string().nonempty("Confirm Password is required").nonoptional(),
 })

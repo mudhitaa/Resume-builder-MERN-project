@@ -1,10 +1,11 @@
-import { FirstHeader } from "../../components/headers/FirstHeader";
+
+import Header from "../../components/headers/Header";
 import { ResumeLayout } from "../layouts/ResumeLayout";
 
 export default function ResumeBuilderPage() {
     return (
         <div className="">
-            <FirstHeader linktext="Logout" linkurl="/login" logourl="/resume-builder" />
+            <Header/>
             <ResumeLayout />
         </div>
     );
