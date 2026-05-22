@@ -4,8 +4,6 @@ import { FirstHeader } from "../../components/headers/FirstHeader";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
-import { toast } from "sonner";
-
 
 export const AuthLayout=({children, linkurl, linktext}:AuthLayoutProps)=>{
   
@@ -13,7 +11,6 @@ export const AuthLayout=({children, linkurl, linktext}:AuthLayoutProps)=>{
   const {loggedInUser}= useAuth()
   useEffect(() => {
       if (loggedInUser) {
-          toast.info("You are logged in");
           navigate('/resume-builder');
       }
   }, [loggedInUser, navigate]);

@@ -11,7 +11,7 @@ export const SummarySection = ({resumeData, handleInputChange}:Readonly<IResumeC
              </Text>
              <FormTextArea
                     name="summary"
-                    placeholder="Write a short professional summary..."
+                    placeholder="Write summary..."
                     handler={handleInputChange}
                     value={resumeData.summary}
               />

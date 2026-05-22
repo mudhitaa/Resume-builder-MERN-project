@@ -17,6 +17,8 @@ authRouter.post("/login", bodyValidator(UserLoginSchema), authCtrl.userLogin);
 authRouter.post("/register",multerUploader.none(),bodyValidator(UserRegisterSchema), authCtrl.userRegister);
 authRouter.get("/me", authMiddleware, authCtrl.getLoggedInUserProfile);
 authRouter.put("/me", authMiddleware, authCtrl.updateProfile);
+authRouter.put("/change-password", authMiddleware, authCtrl.changePassword);
+
 
 
 

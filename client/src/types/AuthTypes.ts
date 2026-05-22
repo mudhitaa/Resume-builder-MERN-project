@@ -35,3 +35,17 @@ export const registerDTO = z.object({
     password: z.string().nonempty("Password is required").nonoptional(),
     confirmPassword: z.string().nonempty("Confirm Password is required").nonoptional(),
 })
+
+
+
+export const profileDTO = z.object({
+  username: z.string().min(3, "Username must be at least 3 characters"),
+  email: z.string().email("Invalid email"),
+});
+
+export type IProfileFormData = z.infer<typeof profileDTO>;
+
+export const passwordDTO = z.object({
+  oldPassword: z.string().min(6),
+  newPassword: z.string().min(6),
+});

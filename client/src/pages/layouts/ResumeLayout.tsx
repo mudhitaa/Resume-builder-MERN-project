@@ -68,8 +68,6 @@ export const ResumeLayout = () => {
     }, []);
 
 
-
-
     // SAVE RESUME
     const handleSaveResume = async () => {
         try {

@@ -9,7 +9,7 @@ export default function ProtectedRoute({
 }: Readonly<{ children: ReactNode }>) {
 
     const navigate = useNavigate();
- const {loggedInUser}= useAuth()
+    const {loggedInUser}= useAuth()
         useEffect(() => {
             if (!loggedInUser) {
                 navigate('/login');

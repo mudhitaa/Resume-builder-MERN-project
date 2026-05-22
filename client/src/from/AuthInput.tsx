@@ -24,7 +24,7 @@ export const AuthInput =({type,name,placeholder,handler,errMsg=''}:Readonly<IAut
                     id={name}
                     placeholder={placeholder}
                     {...field}
-                    className="p-2 border rounded  focus:outline-blue-800" />
+                    className="p-2 border rounded  focus:outline-blue-800 w-full" />
                     <span className="text-red-600 italic text-xs p-0">{errMsg}</span>
        </>
     )

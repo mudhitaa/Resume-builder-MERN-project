@@ -13,14 +13,16 @@ export interface IAuthContext{
     loginuser: (data:Icredientials)=>Promise<IUser | void>;
     getLoggedInUser:()=>Promise<IUser | void>;
     loggedInUser : IUser | undefined;
-    logoutUser: ()=>void;
+    logoutUser: ()=>Promise<IUser|void>;
+    refreshUser: ()=>Promise<IUser|void>;
 }
 
 const AuthContext = createContext<IAuthContext>({
     loginuser : async():Promise<IUser | void>=>{},          //override in case of no defination
     getLoggedInUser:async():Promise<IUser | void>=>{},
     loggedInUser: undefined,
-    logoutUser:  async():Promise<IUser | void>=>{}
+    logoutUser:  async():Promise<IUser | void>=>{},
+    refreshUser: async():Promise<IUser | void>=>{}
 })
 
 export default AuthContext

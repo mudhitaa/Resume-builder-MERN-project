@@ -17,8 +17,6 @@ const AuthProvider = ({children}:Readonly<{children:ReactNode}>)=>{
                 '/auth/login',
                 {...data, expiresInMins:180},
             )
-            console.log("LOGIN RESPONSE:", response.data);
-
             Cookies.set(
                 "loginCookie",
                 response.data.data.token,
@@ -71,12 +69,19 @@ const AuthProvider = ({children}:Readonly<{children:ReactNode}>)=>{
         
     };
 
+    const refreshUser = async () => {
+    if (!Cookies.get("loginCookie")) return;
+
+    await getLoggedInUser();
+};
+
     return loading? (<><Spinner/></>):(
         <AuthContext.Provider value ={{
             loginuser:loginuser,
             getLoggedInUser:getLoggedInUser,
             loggedInUser: loggedInUser,
-            logoutUser: logoutUser
+            logoutUser: logoutUser,
+            refreshUser:refreshUser,
         }}>
             {children}
         </AuthContext.Provider>
