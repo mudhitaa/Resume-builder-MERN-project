@@ -35,13 +35,13 @@ export const PasswordUpdateForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-sm space-y-5 w-1/2">
+    <div className="bg-white p-6 rounded-xl shadow-sm space-y-5 ">
       <Heading1 pagetitle="Change Password" className="mb-4" />
         
 
       <input
         type="password"
-        className="w-full p-2 border rounded mb-3"
+        className="p-2 border rounded  focus:outline-blue-800 w-full"
         placeholder="Old Password"
         value={oldPassword}
         onChange={(e) => setOldPassword(e.target.value)}
@@ -49,7 +49,7 @@ export const PasswordUpdateForm = () => {
 
       <input
         type="password"
-        className="w-full p-2 border rounded mb-4"
+        className="p-2 border rounded  focus:outline-blue-800 w-full"
         placeholder="New Password"
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}

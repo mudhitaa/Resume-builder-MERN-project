@@ -34,13 +34,9 @@ export const ProfileUpdateForm = ({ profileData }: Props) => {
   return (
     <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5 w-1/2"
+        className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm space-y-5 "
         >
-        <Heading1 pagetitle="Profile Settings" className="mb-2" />
-
-        <p className="text-sm text-gray-500 mb-4">
-            Update your account information
-        </p>
+        <Heading1 pagetitle="Profile Settings" className="mb-4" />
 
         <div className="space-y-4">
             <div>
