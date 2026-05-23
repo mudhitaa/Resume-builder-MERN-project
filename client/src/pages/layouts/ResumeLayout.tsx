@@ -101,7 +101,6 @@ export const ResumeLayout = () => {
 
                     {/* RIGHT  */}
                     <div className="h-full overflow-y-auto">
-                        
                             <ResumeLive resumeData={resumeData} />
                         
                     </div>

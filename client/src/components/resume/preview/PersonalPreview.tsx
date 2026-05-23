@@ -39,20 +39,19 @@ export default function PersonalPreview({
                     {/* LINKEDIN */}
                     <div className="flex items-center gap-2">
                         <FaLinkedin className="text-gray-500 text-sm" />
-
-                        <p className="text-gray-600">
+                   
+                        <a href={resumeData.linkedin} className="text-gray-600">
                             {resumeData.linkedin || "linkedin.com/in/alexbaker"}
-                        </p>
+                        </a>
                     </div>
 
                     {/* GITHUB */}
                     {resumeData.github && (
                         <div className="flex items-center gap-2">
                             <FaGithub className="text-gray-500 text-sm" />
-
-                            <p className="text-gray-600">
-                                {resumeData.github}
-                            </p>
+                            <a href={resumeData.github} className="text-gray-600">
+                            {resumeData.github}
+                            </a>
                         </div>
                     )}
 

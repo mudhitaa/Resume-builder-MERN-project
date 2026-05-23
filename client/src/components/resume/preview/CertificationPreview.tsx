@@ -1,11 +1,7 @@
 
 import type { IResumePreviewProps } from "../../../types/PreviewTypes";
 import { PiCertificateBold } from "react-icons/pi";
-export function CertificationPreview({
-    resumeData,
-    accentClass,
-}: Readonly<IResumePreviewProps>) {
-
+export function CertificationPreview({resumeData,accentClass,}: Readonly<IResumePreviewProps>) {
     if (
         !resumeData.certifications ||
         resumeData.certifications.length === 0
@@ -74,17 +70,6 @@ export function CertificationPreview({
                             </p>
                         )}
 
-                        {/* URL */}
-                        {cert.credentialUrl && (
-                            <a
-                                href={cert.credentialUrl }
-                                target="_blank"
-                                rel="noreferrer"
-                                className={`text-sm underline mt-1 inline-block ${accentClass}`}
-                            >
-                                View Credential
-                            </a>
-                        )}
 
                     </div>
                 ))}

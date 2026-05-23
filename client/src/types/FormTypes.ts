@@ -59,7 +59,6 @@ export interface ICertifications{
     date:string;
     description:string;
     credentialId:string;
-    credentialUrl:string;
 }
 
 export interface IProjects{

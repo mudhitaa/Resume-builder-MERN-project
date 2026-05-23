@@ -2,6 +2,7 @@
 import type { Request, Response, NextFunction } from "express";
 import ResumeModel from "../models/Resume";
 import { IResumeController } from "../types/resumeTypes";
+import puppeteer from "puppeteer";
 
 export default class ResumeController implements IResumeController{
 
@@ -37,4 +38,5 @@ export default class ResumeController implements IResumeController{
       next(err);
     }
   }
+
 }

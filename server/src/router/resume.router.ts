@@ -8,4 +8,5 @@ const resumeCtrl = new ResumeController();
 resumeRouter.get("/me",authMiddleware, resumeCtrl.getMyResume);
 resumeRouter.post("/save",authMiddleware,resumeCtrl.saveResume);
 
+
 export default resumeRouter;

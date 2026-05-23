@@ -11,7 +11,7 @@ import { Customization } from "../../from/resumeform/Customization";
 import { Heading2 } from "../typography/Heading";
 import { ProjectsSection } from "../../from/resumeform/ProjectsSection";
 import { CertificationSection } from "../../from/resumeform/CretificationSection";
-
+import { generatePDF } from "../../utils/GeneratePDF";
 
 
 export default function ResumeForm({resumeData,setResumeData,className,onSave}: Readonly<IResumeFormProps>) {
@@ -127,9 +127,7 @@ export default function ResumeForm({resumeData,setResumeData,className,onSave}: 
                         subtext="font-semibold text-gray-800 mb-6"
                     />
 
-                {/* CUSTOMIZATION */}
-                <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
-
+               
                 {/* PERSONAL INFO */}
                 <PersonalInfoSection resumeData={resumeData} handleInputChange={handleInputChange} />
     
@@ -240,7 +238,6 @@ export default function ResumeForm({resumeData,setResumeData,className,onSave}: 
                                         date: "",
                                         description: "",
                                         credentialId: "",
-                                        credentialUrl: ""
                                     }
                                 ]
                             });
@@ -255,13 +252,18 @@ export default function ResumeForm({resumeData,setResumeData,className,onSave}: 
                     }}
                     />
 
+                     {/* CUSTOMIZATION */}
+                <Customization resumeData={resumeData} handleSelectChange={handleSelectChange}/>
+
+
 
                 <div className="flex gap-4">
 
-                    <FormActionButton
-                        submitBtnTxt="Create PDF"
-                    />
-
+                <FormActionButton
+                    submitBtnTxt="Create PDF"
+                    onClick={()=>generatePDF(resumeData)}
+                    type="button"
+                />
                     <FormActionButton
                         submitBtnTxt="Save"
                         onClick={onSave}

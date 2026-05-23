@@ -35,27 +35,28 @@ export default function ResumeLive({
             <div
                 className={`border border-dashed border-gray-300 rounded-xl bg-white ${fontClass}`}
             >
+                <div id="resume-pdf" >
+                    {resumeData.template === "modern" && (
+                        <ModernTemplate
+                            resumeData={resumeData}
+                            fontClass={fontClass}
+                        />
+                    )}
 
-                {resumeData.template === "modern" && (
-                    <ModernTemplate
-                        resumeData={resumeData}
-                        fontClass={fontClass}
-                    />
-                )}
+                    {resumeData.template === "classic" && (
+                        <ClassicTemplate
+                            resumeData={resumeData}
+                            fontClass={fontClass}
+                        />
+                    )}
 
-                {resumeData.template === "classic" && (
-                    <ClassicTemplate
-                        resumeData={resumeData}
-                        fontClass={fontClass}
-                    />
-                )}
-
-                {resumeData.template === "minimal" && (
-                    <MinimalTemplate
-                        resumeData={resumeData}
-                        fontClass={fontClass}
-                    />
-                )}
+                    {resumeData.template === "minimal" && (
+                        <MinimalTemplate
+                            resumeData={resumeData}
+                            fontClass={fontClass}
+                        />
+                    )}
+                </div>
 
             </div>
         </div>

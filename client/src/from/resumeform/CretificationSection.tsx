@@ -71,13 +71,6 @@ export const CertificationSection = ({
                                     value={cert.credentialId}
                                 />
 
-                                <FormInput
-                                    type="text"
-                                    name="credentialUrl"
-                                    placeholder="Credential URL"
-                                    handler={(e) => handler(i, e)}
-                                    value={cert.credentialUrl}
-                                />
                             </div>
                             <div className="flex justify-end mt-4">
 

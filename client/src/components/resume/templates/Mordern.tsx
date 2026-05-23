@@ -40,7 +40,7 @@ export default function ClassicTemplate({
     return (
         <div className={`bg-white p-12 ${fontClass}`}>
 
-        <header className="grid grid-cols-2 gap-10 pb-5">
+        <header className="grid grid-cols-2 gap-10 pb-0">
             {/* LEFT */}
             <div>
                 <h1
@@ -90,10 +90,9 @@ export default function ClassicTemplate({
                 {/* LINKEDIN */}
                 <div className="flex items-center gap-3">
                     <FaLinkedin className="text-gray-500 text-sm" />
-
-                    <p>
-                        {resumeData.linkedin || "linkedin.com/in/alexbaker"}
-                    </p>
+                        <a href={resumeData.linkedin} className="text-gray-600">
+                            {resumeData.linkedin || "linkedin.com/in/alexbaker"}
+                        </a>
                 </div>
 
                     {/* GITHUB */}
@@ -101,7 +100,9 @@ export default function ClassicTemplate({
                         <div className="flex items-center gap-3">
                             <FaGithub className="text-gray-500 text-sm" />
                             <span>
+                                <a href={resumeData.github} className="text-gray-600">
                                 {resumeData.github}
+                                </a>
                             </span>
                         </div>
                     )}

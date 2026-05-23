@@ -20,75 +20,70 @@ import {
 export default function MinimalTemplate({
     resumeData,
     fontClass,
-   
 }: Readonly<ITemplateProps>) {
-// ACCENT COLORS
+
     const accentClass =
-    resumeData.accentColor === "rose"
-        ? "text-rose-700"
-        :resumeData.accentColor === "blue"
-        ? "text-blue-900"
-        : resumeData.accentColor === "black"
-        ? "text-black"
-        : resumeData.accentColor === "emerald"
-        ? "text-emerald-800"
-        : resumeData.accentColor === "amber"
-        ? "text-amber-700"
-        : "text-slate-800";
+        resumeData.accentColor === "rose"
+            ? "text-rose-700"
+            : resumeData.accentColor === "blue"
+            ? "text-blue-900"
+            : resumeData.accentColor === "black"
+            ? "text-black"
+            : resumeData.accentColor === "emerald"
+            ? "text-emerald-800"
+            : resumeData.accentColor === "amber"
+            ? "text-amber-700"
+            : "text-slate-800";
+
     return (
-        <div className={`bg-white p-10 ${fontClass}`}>
+        <div className={`bg-white p-8 text-sm ${fontClass}`}>
 
-           <header>
+            {/* HEADER */}
+            <header>
 
-                <h1 className={`text-4xl font-bold ${accentClass}`}>
+                <h1 className={`text-3xl font-bold ${accentClass}`}>
                     {resumeData.fullname || "Alexander Baker"}
                 </h1>
 
-                <div className="flex flex-wrap gap-x-6 gap-y-3 mt-4 text-sm text-gray-600">
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-3 text-xs text-gray-600">
 
                     {/* EMAIL */}
                     <div className="flex items-center gap-2">
-                        <FaEnvelope className="text-gray-500 text-sm" />
-
-                        <span>
-                            {resumeData.email || "alexander.baker@gmail.com"}
-                        </span>
+                        <FaEnvelope className="text-gray-500 text-xs" />
+                        <span>{resumeData.email || "alexander.baker@gmail.com"}</span>
                     </div>
 
                     {/* PHONE */}
                     <div className="flex items-center gap-2">
-                        <FaPhone className="text-gray-500 text-sm" />
-
-                        <span>
-                            {resumeData.phone || "+1 (555) 123-4567"}
-                        </span>
+                        <FaPhone className="text-gray-500 text-xs" />
+                        <span>{resumeData.phone || "+1 (555) 123-4567"}</span>
                     </div>
 
                     {/* ADDRESS */}
                     <div className="flex items-center gap-2">
-                        <FaLocationDot className="text-gray-500 text-sm" />
-
-                        <span>
-                            {resumeData.address || "Los Angeles, California, USA"}
-                        </span>
+                        <FaLocationDot className="text-gray-500 text-xs" />
+                        <span>{resumeData.address || "Los Angeles, California, USA"}</span>
                     </div>
 
                     {/* GITHUB */}
                     {resumeData.github && (
-                        <div className="flex items-center gap-3">
-                            <FaGithub className="text-gray-500 text-sm" />
+                        <div className="flex items-center gap-2">
+                            <FaGithub className="text-gray-500 text-xs" />
                             <span>
+                                <a href={resumeData.github} className="text-gray-600">
                                 {resumeData.github}
+                                </a>
                             </span>
                         </div>
                     )}
 
                     {/* LINKEDIN */}
                     <div className="flex items-center gap-2">
-                        <FaLinkedin className="text-gray-500 text-sm" />
-
+                        <FaLinkedin className="text-gray-500 text-xs" />
                         <span>
-                            {resumeData.linkedin || "linkedin.com/in/alexbaker"}
+                            <a href={resumeData.linkedin} className="text-gray-600">
+                                {resumeData.linkedin || "linkedin.com/in/alexbaker"}
+                            </a>
                         </span>
                     </div>
 
@@ -96,11 +91,11 @@ export default function MinimalTemplate({
 
             </header>
 
-            {/* ================= BODY ================= */}
-            <main className="grid grid-cols-12 gap-10 mt-5">
+            {/* BODY */}
+            <main className="grid grid-cols-12 gap-8 mt-4 text-sm">
 
                 {/* LEFT */}
-                <section className="col-span-7 space-y-10">
+                <section className="col-span-7 space-y-8">
 
                     <SummaryPreview
                         resumeData={resumeData}
@@ -120,7 +115,7 @@ export default function MinimalTemplate({
                 </section>
 
                 {/* RIGHT */}
-                <aside className="col-span-5 space-y-10">
+                <aside className="col-span-5 space-y-8">
 
                     <EducationPreview
                         resumeData={resumeData}
