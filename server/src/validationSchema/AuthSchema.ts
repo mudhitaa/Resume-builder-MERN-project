@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const PasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,25}$/
+export const PasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,25}$/
 
 
 export const UserRegisterSchema = z.object({

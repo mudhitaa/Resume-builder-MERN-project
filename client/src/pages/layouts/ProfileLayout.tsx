@@ -5,6 +5,7 @@ import { getMyProfile } from "../../services/ProfileService";
 import { ProfileUpdateForm } from "../../components/profile/ProfileUpdateForm";
 import { PasswordUpdateForm } from "../../components/profile/PasswordUpdateForm";
 import { type IProfileFormData } from "../../types/AuthTypes";
+import { DeleteProfileForm } from "../../components/profile/DeleteProfileForm";
 
 export const ProfileLayout = () => {
   const [loading, setLoading] = useState(true);
@@ -43,7 +44,7 @@ export const ProfileLayout = () => {
     >
       <div className="w-full flex flex-col md:flex-row gap-6 md:gap-10 max-w-5xl bg-blue-50 rounded-2xl shadow-md p-6 space-y-6">
 
-            <div className="w-full md:w-1/2">
+            <div className="w-full lg:w-1/3">
                 <ProfileUpdateForm
                 profileData={profileData}
                 setProfileData={setProfileData}
@@ -51,11 +52,14 @@ export const ProfileLayout = () => {
             </div>
 
             {/* RIGHT / BOTTOM */}
-            <div className="w-full md:w-1/2">
+            <div className="w-full lg:w-1/3">
                 <PasswordUpdateForm />
             </div>
-
+            <div className="w-full lg:w-1/3">     
+              <DeleteProfileForm/>
+            </div>
       </div>
+
     </div>
     </>
   );

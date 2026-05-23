@@ -7,4 +7,5 @@ export interface IAuthController{
     getLoggedInUserProfile(req:Request,res:Response,next:NextFunction):void
     updateProfile(req:Request,res:Response,next:NextFunction):void
     changePassword(req:Request,res:Response,next:NextFunction):void
+    deleteProfile(req:Request,res:Response,next:NextFunction):void
 }

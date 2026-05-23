@@ -18,6 +18,7 @@ authRouter.post("/register",multerUploader.none(),bodyValidator(UserRegisterSche
 authRouter.get("/me", authMiddleware, authCtrl.getLoggedInUserProfile);
 authRouter.put("/me", authMiddleware,bodyValidator(UpdateProfileSchema), authCtrl.updateProfile);
 authRouter.put("/change-password", authMiddleware,bodyValidator(ChangePasswordSchema), authCtrl.changePassword);
+authRouter.delete("/me", authMiddleware, authCtrl.deleteProfile);
 
 
 

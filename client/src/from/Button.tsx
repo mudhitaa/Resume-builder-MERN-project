@@ -14,7 +14,7 @@ interface IAddButtonProps{
 
 export const FormActionButton = ({
     submitBtnTxt = "Submit",
-    className = "",onClick,type="button"
+    className,onClick,type="button"
 }: Readonly<IFormActionButtonProps>) => {
     return (
         <button

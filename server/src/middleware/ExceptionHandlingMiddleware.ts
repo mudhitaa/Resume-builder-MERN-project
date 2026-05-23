@@ -1,19 +1,31 @@
-import type { Request,Response,NextFunction } from "express"
+import type { Request, Response, NextFunction } from "express";
 
-const ExceptionHandlingMiddleware =(error:any,req:Request,res:Response,next: NextFunction)=>{
-    
-    //error handling middleware
-    
-    let code = error.code || 500
-    let detail = error.details || error.detail|| null
-    let message = error.message||"something went wrong from exception"
+const ExceptionHandlingMiddleware = (error: any,req: Request,res: Response,next: NextFunction) => {
+
+    console.log("ERROR:", error);
 
     
-    res.status(code).json({
-        error:detail,
-        status:false,
-        message: message
-    })
-}
+    let statusCode = 500;
+    let message = error.message || "Something went wrong";
+    let detail = error.details || error.detail || null;
 
-export default ExceptionHandlingMiddleware
+    // MongoDB duplicate key error
+    if (error.code === 11000) {
+        return res.status(409).json({
+            status: false,
+            message: "Username or email already exists",
+        });
+    }
+
+    if (error.code && error.code >= 100 && error.code < 600) {
+        statusCode = error.code;
+    }
+
+    return res.status(statusCode).json({
+        status: false,
+        message,
+        error: detail,
+    });
+};
+
+export default ExceptionHandlingMiddleware;

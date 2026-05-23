@@ -148,4 +148,23 @@ export default class AuthController implements IAuthController {
         }
     }
 
+    async deleteProfile(req: Request, res: Response, next: NextFunction){
+        try{
+            const userId = (req as any).user.sub
+            const deletedUser = await UserModel.findByIdAndDelete(userId)
+            if (!deletedUser){
+                throw{
+                    code:404,
+                    messsage: "user not found",
+                }
+            }
+            res.json({
+                status:true,
+                message:"Account deleted successfully"
+            })
+        }catch(err){
+            next(err)
+        }
+    }
+
 }
