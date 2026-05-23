@@ -39,13 +39,15 @@ export const registerDTO = z.object({
 
 
 export const profileDTO = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
-  email: z.string().email("Invalid email"),
+  username: z.string().min(3, "Username must be at least 2 characters"),
+  email: z.email("Invalid email"),
 });
 
 export type IProfileFormData = z.infer<typeof profileDTO>;
 
-export const passwordDTO = z.object({
-  oldPassword: z.string().min(6),
-  newPassword: z.string().min(6),
+export const passwordUpdateDTO = z.object({
+    oldPassword: z.string().min(1, "Old password is required"),
+    newPassword: z.string().min(6, "Password must be at least 6 characters"),
 });
+
+export type IPasswordUpdateForm = z.infer<typeof passwordUpdateDTO>;

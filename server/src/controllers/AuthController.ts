@@ -53,6 +53,7 @@ export default class AuthController implements IAuthController {
     async userRegister(req: Request, res: Response , next : NextFunction) {
         try{
             const data = req.body
+            
             //pswd encryption
             data.password = bcrypt.hashSync(data.password,12)
 
@@ -77,7 +78,6 @@ export default class AuthController implements IAuthController {
 
     }
 
-
     async getLoggedInUserProfile(req: Request, res: Response , next : NextFunction){
 
         try {
@@ -94,44 +94,31 @@ export default class AuthController implements IAuthController {
         }
     }
 
-    async updateProfile(req: Request, res: Response, next: NextFunction) {
-        try {
-            const userId = (req as any).user.sub;
+    async updateProfile(req: Request,res: Response, next: NextFunction) {
+            try {
+                const userId = (req as any).user.sub;
+                const { username, email } = req.body;
+                const updated = await UserModel.findByIdAndUpdate(
+                    userId,{ username,email,},
+                    { new: true }
+                ).select("-password");
+                res.json({
+                    status: true,
+                    data: updated,
+                    message: "Profile updated successfully",
+                });
 
-            const { username, email, password } = req.body;
-
-            const updateData: any = {};
-
-            if (username) updateData.username = username;
-            if (email) updateData.email = email;
-
-            if (password && password.trim() !== "") {
-                updateData.password = bcrypt.hashSync(password, 12);
+            } catch (err) {
+                next(err);
             }
-
-            const updated = await UserModel.findByIdAndUpdate(
-                userId,
-                updateData,
-                { new: true }
-            ).select("-password");
-
-            res.json({
-                status: true,
-                data: updated,
-                message: "Profile updated successfully",
-            });
-
-        } catch (err) {
-            next(err);
         }
-    }
 
     async changePassword(req: Request, res: Response, next: NextFunction) {
         try {
             const userId = (req as any).user.sub;
             const { oldPassword, newPassword } = req.body
-
             const user = await UserModel.findById(userId);
+
             if (!user) throw { code: 404, message: "User not found" };
 
             //verify
@@ -140,9 +127,14 @@ export default class AuthController implements IAuthController {
                 throw { code: 422, message: "Old password is incorrect" };
             }
 
+            if (oldPassword === newPassword) {
+                throw {
+                    code: 422,
+                    message: "New password must be different",
+                };
+            }
             //rehash
             const hashedPassword = bcrypt.hashSync(newPassword, 12);
-
             user.password = hashedPassword;
             await user.save();
 

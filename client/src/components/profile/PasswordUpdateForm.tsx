@@ -1,62 +1,66 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {passwordUpdateDTO,type IPasswordUpdateForm,} from "../../types/AuthTypes";
 import { changePassword } from "../../services/PasswordServices";
 import { toast } from "sonner";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
 import { Heading1 } from "../../components/typography/Heading";
 import { FormActionButton } from "../../from/Button";
+import { AuthInput } from "../../from/AuthInput";
 
 export const PasswordUpdateForm = () => {
-  const { logoutUser } = useAuth();
-  const navigate = useNavigate();
+    const { logoutUser } = useAuth();
+    const navigate = useNavigate();
 
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+    const {handleSubmit,control,formState: { errors, isSubmitting },} = useForm<IPasswordUpdateForm>({
+        resolver: zodResolver(passwordUpdateDTO),
+        defaultValues: {
+            oldPassword: "",
+            newPassword: "",
+        },
+    });
 
-  const handleChangePassword = async () => {
-    try {
-      setLoading(true);
+    const onSubmit = async (data: IPasswordUpdateForm) => {
+        try {
+            await changePassword(data);
+            toast.success("Password updated. Please login again.");
+            logoutUser();
+            navigate("/login");
+        } catch {
+            toast.error("Password update failed");
+        }
+    };
 
-      await changePassword({
-        oldPassword,
-        newPassword,
-      });
+    return (
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white p-6 rounded-xl shadow-sm space-y-5"
+        >
+            <Heading1 pagetitle="Change Password" className="mb-4" />
 
-      toast.success("Password updated. Please login again.");
+            <AuthInput
+                type="password"
+                name="oldPassword"
+                placeholder="Old Password"
+                handler={control}
+                errMsg={errors?.oldPassword?.message}
+            />
 
-      logoutUser();
-      navigate("/login");
-    } catch (err) {
-      toast.error("Password update failed");
-    } finally {
-      setLoading(false);
-    }
-  };
+            <AuthInput
+                type="password"
+                name="newPassword"
+                placeholder="New Password"
+                handler={control}
+                errMsg={errors?.newPassword?.message}
+            />
 
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-sm space-y-5 ">
-      <Heading1 pagetitle="Change Password" className="mb-4" />
-        
-
-      <input
-        type="password"
-        className="p-2 border rounded  focus:outline-blue-800 w-full"
-        placeholder="Old Password"
-        value={oldPassword}
-        onChange={(e) => setOldPassword(e.target.value)}
-      />
-
-      <input
-        type="password"
-        className="p-2 border rounded  focus:outline-blue-800 w-full"
-        placeholder="New Password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-
-      <FormActionButton submitBtnTxt="Save Password" onClick={handleChangePassword}/>
-      
-    </div>
-  );
+            <FormActionButton
+                submitBtnTxt={
+                    isSubmitting ? "Updating..." : "Save Password"
+                }
+                type="submit"
+            />
+        </form>
+    );
 };

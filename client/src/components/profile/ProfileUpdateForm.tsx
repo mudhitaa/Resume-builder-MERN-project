@@ -5,6 +5,7 @@ import { updateProfile } from "../../services/ProfileService";
 import { toast } from "sonner";
 import { AuthInput } from "../../from/AuthInput";
 import { Heading1 } from "../../components/typography/Heading";
+import { FormActionButton } from "../../from/Button";
 
 interface Props {
   profileData: IProfileFormData;
@@ -13,11 +14,7 @@ interface Props {
 
 export const ProfileUpdateForm = ({ profileData }: Props) => {
     
-    const {
-        handleSubmit,
-        control,
-        formState: { errors },
-    } = useForm<IProfileFormData>({
+    const {handleSubmit,control,formState: { errors , isSubmitting},} = useForm<IProfileFormData>({
         resolver: zodResolver(profileDTO),
         defaultValues: profileData,
     });
@@ -60,19 +57,12 @@ export const ProfileUpdateForm = ({ profileData }: Props) => {
             </div>
         </div>
 
-        <button
-            type="submit"
-            className="w-full
-                px-5 py-3
-                hover:cursor-pointer
-                bg-blue-900
-                rounded-md
-                text-white
-                transition
-                hover:scale-[0.98]"
-        >
-            Save Changes
-        </button>
+        <FormActionButton
+                  submitBtnTxt={
+                       isSubmitting ? "Updating..." : "Save Changes"
+                    }
+                  type="submit"
+          />
         </form>
   );
 };
