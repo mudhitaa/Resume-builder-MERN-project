@@ -18,3 +18,13 @@
   font-family: "Playfair", sans-serif;
 }
 
+.resume-page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: auto;
+    background: white;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+

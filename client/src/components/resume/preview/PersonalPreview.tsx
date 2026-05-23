@@ -14,8 +14,7 @@ export default function PersonalPreview({
 }: Readonly<IResumePreviewProps>) {
 
     return (
-        <>
-
+        <> 
             {/* NAME */}
             <h1 className={`text-3xl font-bold ${accentClass}`}>
                 {resumeData.fullname || "Alexander Baker"}

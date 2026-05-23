@@ -6,6 +6,7 @@ import { type IResumeData } from "../../types/FormTypes";
 import { getMyResume,saveResume } from "../../services/ResumeService";
 import { toast } from "sonner";
 
+
 export const ResumeLayout = () => {
     const [resumeData, setResumeData] = useState<IResumeData>({
         fullname: "",
@@ -101,8 +102,22 @@ export const ResumeLayout = () => {
 
                     {/* RIGHT  */}
                     <div className="h-full overflow-y-auto">
-                            <ResumeLive resumeData={resumeData} />
-                        
+                            <ResumeLive resumeData={resumeData}/>   
+                    </div>
+                    
+                    {/* HIDDEN PDF VERSION */}
+                    <div id="pdf-render"
+                        style={{
+                            position: "fixed",
+                            left: "-99999px",
+                            top: 0,
+                            zIndex: -1,
+                        }}
+                    >
+                        <ResumeLive
+                            resumeData={resumeData}
+                            isPDF={true}
+                        />
                     </div>
 
                 </div>

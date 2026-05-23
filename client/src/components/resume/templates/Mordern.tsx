@@ -38,7 +38,7 @@ export default function ClassicTemplate({
 
 
     return (
-        <div className={`bg-white p-12 ${fontClass}`}>
+        <div className={`resume-page bg-white p-12 ${fontClass}`}>
 
         <header className="grid grid-cols-2 gap-10 pb-0">
             {/* LEFT */}

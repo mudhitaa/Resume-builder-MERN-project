@@ -14,6 +14,7 @@ import { CertificationSection } from "../../from/resumeform/CretificationSection
 import { generatePDF } from "../../utils/GeneratePDF";
 
 
+
 export default function ResumeForm({resumeData,setResumeData,className,onSave}: Readonly<IResumeFormProps>) {
    
 
@@ -269,6 +270,7 @@ export default function ResumeForm({resumeData,setResumeData,className,onSave}: 
                         onClick={onSave}
                         type="button"
                     />
+            
 
                 </div>
 

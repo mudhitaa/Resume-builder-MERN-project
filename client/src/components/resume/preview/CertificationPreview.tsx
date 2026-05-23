@@ -9,7 +9,7 @@ export function CertificationPreview({resumeData,accentClass,}: Readonly<IResume
         return null;
     }
 
-    return (
+    return (     
         <section>
 
                 <div className={`flex items-center gap-2 mb-3 border-b ${accentClass}`}>

@@ -7,7 +7,8 @@ import MinimalTemplate from "./templates/Minimal";
 
 export default function ResumeLive({
     resumeData,
-    className
+    className,
+    isPDF
 }: Readonly<IResumePreviewProps>) {
 
     // FONT STYLES
@@ -25,15 +26,8 @@ export default function ResumeLive({
         <div
             className={`bg-white rounded-2xl shadow-md p-6 ${className || ""}`}
         >
-
-            {/* TITLE */}
-            <h2 className="text-2xl font-semibold mb-6">
-                Live Resume Preview
-            </h2>
-
-            {/* RESUME CONTAINER */}
             <div
-                className={`border border-dashed border-gray-300 rounded-xl bg-white ${fontClass}`}
+                className={`bg-white ${fontClass}`}
             >
                 <div id="resume-pdf" >
                     {resumeData.template === "modern" && (
@@ -47,6 +41,7 @@ export default function ResumeLive({
                         <ClassicTemplate
                             resumeData={resumeData}
                             fontClass={fontClass}
+                            isPDF={isPDF}
                         />
                     )}
 

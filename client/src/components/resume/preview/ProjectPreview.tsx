@@ -30,7 +30,7 @@ export function ProjectsPreview({
                     <div key={project.id}>
 
                         {/* TITLE */}
-                        <div className="flex justify-between items-start gap-4">
+                        <div className="flex justify-between items-start">
 
                             <h3 className="font-semibold text-gray-800">
                                 {project.title}
@@ -54,10 +54,9 @@ export function ProjectsPreview({
 
                         </div>
 
-
                         {/* DESCRIPTION */}
                         {project.description && (
-                            <p className="text-sm text-gray-700 mt-3 leading-relaxed">
+                            <p className="text-sm text-gray-700 leading-relaxed">
                                 {project.description}
                             </p>
                         )}
@@ -68,5 +67,6 @@ export function ProjectsPreview({
             </div>
 
         </section>
+    
     );
 }

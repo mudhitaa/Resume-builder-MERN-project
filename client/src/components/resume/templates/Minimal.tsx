@@ -36,7 +36,7 @@ export default function MinimalTemplate({
             : "text-slate-800";
 
     return (
-        <div className={`bg-white p-8 text-sm ${fontClass}`}>
+        <div className={`resume-page bg-white p-8 text-sm ${fontClass}`}>
 
             {/* HEADER */}
             <header>

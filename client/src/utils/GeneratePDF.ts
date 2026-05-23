@@ -2,46 +2,37 @@ import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import type { IResumeData } from "../types/FormTypes";
 
-export const generatePDF = async (data:IResumeData) => {
-    const element = document.getElementById("resume-pdf");
-    if (!element) return;
+export const generatePDF = async (data: IResumeData) => {
 
-    const image = await toPng(element, {
-        cacheBust: true,
-        pixelRatio: 2,
-        backgroundColor: "#ffffff",
-    });
+    const pages = document.querySelectorAll(".resume-page");
+
+    if (!pages.length) return;
 
     const pdf = new jsPDF("p", "mm", "a4");
 
-    const pdfWidth = 210;
-    const pdfHeight = 297;
+    for (let i = 0; i < pages.length; i++) {
 
-    // create image object to get natural size
-    const img = new Image();
-    img.src = image;
+        const page = pages[i] as HTMLElement;
 
-    await new Promise((resolve) => {
-        img.onload = resolve;
-    });
+        const image = await toPng(page, {
+            cacheBust: true,
+            pixelRatio: 3,
+            backgroundColor: "#ffffff",
+        });
 
-    const imgWidth = img.width;
-    const imgHeight = img.height;
+        if (i > 0) {
+            pdf.addPage();
+        }
 
-    // SCALE proportionally 
-    const ratio = Math.min(
-        pdfWidth / imgWidth,
-        pdfHeight / imgHeight
-    );
+        pdf.addImage(
+            image,
+            "PNG",
+            0,
+            0,
+            210,
+            297
+        );
+    }
 
-    const newWidth = imgWidth * ratio;
-    const newHeight = imgHeight * ratio;
-
-    // center image on A4
-    const x = (pdfWidth - newWidth) / 2;
-    const y = 0
-
-    pdf.addImage(image, "PNG", x, y, newWidth, newHeight);
-
-    pdf.save(`${data.fullname} ${data.template}`);
+    pdf.save(`${data.fullname}-${data.template}.pdf`);
 };
