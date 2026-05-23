@@ -4,7 +4,7 @@ import { RedirectLink } from "../../ui/Links";
 import { useAuth } from "../../hooks/useAuth";
 
 export interface Firstheaderprops{
-    linkurl:string;
+    linkurl?:string;
     linktext?:string;
     logourl?:string;
 }
@@ -19,7 +19,7 @@ export const FirstHeader = ({logourl ="/",linkurl,linktext}:Readonly<Firstheader
     <header className="bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
 
-        {/* LEFT SIDE (LOGO + TITLE) */}
+        {/* LEFT SIDE */}
         <div >
           <RedirectLink url={logourl} 
           
@@ -43,7 +43,7 @@ export const FirstHeader = ({logourl ="/",linkurl,linktext}:Readonly<Firstheader
         {!loggedInUser && (
           <div className="ml-auto flex items-center gap-4">
             <RedirectLink
-              url={linkurl}
+              url={linkurl || "/"}
               txt={linktext}
               className="block rounded-md bg-blue-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-800"
             />

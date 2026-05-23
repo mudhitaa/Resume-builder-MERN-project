@@ -22,14 +22,7 @@ export const generatePDF = async (data: IResumeData) => {
         if (i > 0) {
             pdf.addPage();
         }
-        pdf.addImage(
-            image,
-            "PNG",
-            0,
-            0,
-            210,
-            297
-        );
+        pdf.addImage(image,"PNG",0,0,210,297);
     }
 
     pdf.save(`${data.fullname}-${data.template}.pdf`);

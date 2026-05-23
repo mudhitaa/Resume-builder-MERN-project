@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../hooks/useAuth";
 
-export const AuthLayout=({children, linkurl, linktext}:AuthLayoutProps)=>{
+export const AuthLayout=({children, linkurl, linktext,className}:AuthLayoutProps)=>{
   
   const navigate = useNavigate()
   const {loggedInUser}= useAuth()
@@ -21,7 +21,7 @@ export const AuthLayout=({children, linkurl, linktext}:AuthLayoutProps)=>{
         <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-10 bg-cover bg-center"
           style={{ backgroundImage: `url(${bgImage})` }}
          >
-        <div className="bg-white/80 backdrop-blur-md p-7 rounded-xl shadow-lg shadow-blue-300 w-full max-w-xl text-justify">
+        <div className={`bg-white/80 backdrop-blur-md p-7 rounded-xl shadow-lg shadow-blue-300 w-full max-w-5xl text-justify ${className}`}>
         {children}
       </div>
      </div>

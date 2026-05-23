@@ -1,21 +1,47 @@
-
 import { Heading1, Heading2, Text } from "../../components/typography/Heading";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { RedirectLink } from "../../ui/Links";
+import { LandingCard } from "../../components/auth/LandingCard";
 
 export default function LandingPage() {
   return (
-    <>
-    <AuthLayout linkurl="/login" linktext="Login">  
-      <Heading1 pagetitle="Welcome to Resume Builder!" />
-      <Heading2 maintext="Create your professional resume in minutes." subtext="text-blue-800" />
-      <Text className="text-gray-700 mt-4" >
-        <p>Join thousands of users who have crafted their perfect resumes with our easy-to-use platform.
-           Whether you're a student, a professional, or someone looking to switch careers, our resume builder has got you covered.</p>
-      </Text>
-      <RedirectLink url="/register" txt="Get Started Today" className=" md:block mt-5 rounded-md bg-blue-900 px-5 py-2 text-md font-medium text-white transition hover:bg-blue-800 w-1/3" />
-    </AuthLayout>
+    <AuthLayout linkurl="/login" linktext="Login">
+      
+      <div className="w-full max-w-6xl mx-auto py-10 md:py-6">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="space-y-6 text-center md:text-left">
+            
+            <div className="space-y-2">
+              <Heading1 pagetitle="Build a Resume That Gets You Hired" />
+              <Heading2
+                maintext="Create professional resumes in minutes"
+                subtext="text-blue-600"
+              />
+            </div>
 
-    </>
+            <Text className="text-gray-600 text-justify leading-relaxed max-w-md mx-auto md:mx-0">
+              <p>
+                Join thousands of users building modern, ATS-friendly resumes
+                with ease. Whether you're starting your career or switching
+                paths, we help you stand out with clean, professional design.
+              </p>
+            </Text>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start pt-2">
+              <RedirectLink
+                url="/register"
+                txt="Get Started"
+                className="w-full sm:w-auto rounded-lg bg-blue-900 px-6 py-3 text-white font-medium hover:bg-blue-800 transition shadow-md"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT */}
+            <LandingCard/>
+
+        </div>
+      </div>
+    </AuthLayout>
   );
 }
