@@ -37,7 +37,8 @@ export const DeleteProfileForm =()=>{
 
      <FormActionButton
              submitBtnTxt={ "Delete"}
-             type="submit"
+             type="button"
+             onClick={handleDeleteAccount}
     />
 
 </div></>)

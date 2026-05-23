@@ -8,7 +8,7 @@ import AuthProvider from "./context/provider/AuthProvider";
 createRoot(document.getElementById('root')!).render(
     <>
     <AuthProvider>
-    <Toaster position="top-right" />
+    <Toaster position="bottom-right" />
     <RouterConfig/>
     </AuthProvider>
     </>   

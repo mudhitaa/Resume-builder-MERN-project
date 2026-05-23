@@ -64,7 +64,7 @@ export default function RegisterForm() {
                 handler={control}
                 errMsg={errors?.confirmPassword?.message}
             />
-            <FormActionButton submitBtnTxt="Register" />
+            <FormActionButton submitBtnTxt="Register" type="submit"/>
         </form>
     </>)
         }

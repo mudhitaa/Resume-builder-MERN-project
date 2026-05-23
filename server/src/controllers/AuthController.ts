@@ -2,7 +2,8 @@
 import type { NextFunction, Request, Response } from "express";
 import type { IAuthController } from "../types/authType";
 import bcrypt from "bcryptjs";
-import UserModel from "../models/User";
+import UserModel from "../models/User"
+import ResumeModel from "../models/Resume";
 import { IUser } from "../types/UserTypes";
 import jwt from "jsonwebtoken"
 import { jwtSecretConfig } from "../config/AppConfig";
@@ -151,6 +152,7 @@ export default class AuthController implements IAuthController {
     async deleteProfile(req: Request, res: Response, next: NextFunction){
         try{
             const userId = (req as any).user.sub
+            await ResumeModel.deleteMany({ userId });
             const deletedUser = await UserModel.findByIdAndDelete(userId)
             if (!deletedUser){
                 throw{
