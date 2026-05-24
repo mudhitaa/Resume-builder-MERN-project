@@ -1,4 +1,4 @@
-# 🧾 Resume Builder – MERN Stack Application
+# EasyResume(Resume Builder) – MERN Stack Application
 
 A full-stack Resume Builder web application that allows users to create, edit, preview, and save professional resumes with real-time updates and authentication.
 
