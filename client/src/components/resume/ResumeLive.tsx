@@ -19,13 +19,13 @@ export default function ResumeLive({
         : "font-inter";
 
     const handleZoomIn = () => setZoom(prev => Math.min(prev + 10, 150));
-    const handleZoomOut = () => setZoom(prev => Math.max(prev - 10, 50));
+    const handleZoomOut = () => setZoom(prev => Math.max(prev - 10, 20));
     const handleReset = () => setZoom(100);
 
     return (
         <div className={`bg-white rounded-2xl shadow-md p-6 ${className || ""}`}>
 
-            {/* ZOOM CONTROLS — hidden when rendering PDF */}
+            {/* ZOOM CONTROLS*/}
             {!isPDF && (
                 <div className="flex items-center justify-end gap-2 mb-3">
                     <button
