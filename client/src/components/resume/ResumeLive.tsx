@@ -51,25 +51,28 @@ export default function ResumeLive({
             )}
 
             {/* RESUME CONTENT */}
-            <div
-                className={`bg-white ${fontClass}`}
-                style={{
-                    transform: `scale(${zoom / 100})`,
-                    transformOrigin: "top center",
-                    // keeps container height in sync with scaled content
-                    marginBottom: `${(zoom - 100) * 3}px`
-                }}
-            >
-                <div id="resume-pdf">
-                    {resumeData.template === "modern" && (
-                        <ModernTemplate resumeData={resumeData} fontClass={fontClass} />
-                    )}
-                    {resumeData.template === "classic" && (
-                        <ClassicTemplate resumeData={resumeData} fontClass={fontClass} isPDF={isPDF} />
-                    )}
-                    {resumeData.template === "minimal" && (
-                        <MinimalTemplate resumeData={resumeData} fontClass={fontClass} />
-                    )}
+            <div className="overflow-hidden">
+                <div
+                    className={`bg-white ${fontClass}`}
+                        style={{
+                            transform: `scale(${zoom / 100})`,
+                            transformOrigin: "top center",
+                            marginBottom: zoom < 100 
+                                ? `${(zoom - 100) * 5}px` 
+                                : `${(zoom - 100) * 3}px`  
+                        }}
+                >
+                    <div id="resume-pdf">
+                        {resumeData.template === "modern" && (
+                            <ModernTemplate resumeData={resumeData} fontClass={fontClass} />
+                        )}
+                        {resumeData.template === "classic" && (
+                            <ClassicTemplate resumeData={resumeData} fontClass={fontClass} isPDF={isPDF} />
+                        )}
+                        {resumeData.template === "minimal" && (
+                            <MinimalTemplate resumeData={resumeData} fontClass={fontClass} />
+                        )}
+                    </div>
                 </div>
             </div>
 
