@@ -28,6 +28,9 @@ A full-stack Resume Builder web application that allows users to create, edit, p
 - Toast notifications for feedback
 
 ---
+## Live Demo
+[https://resume-builder-mern-project.vercel.app](https://resume-builder-mern-project.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://resume-builder-mern-project.vercel.app)
 
 ## Tech Stack
 
