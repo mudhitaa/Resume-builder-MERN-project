@@ -23,8 +23,9 @@ export const ProfileUpdateForm = ({ profileData }: Props) => {
     try {
       await updateProfile(data);
       toast.success("Profile updated successfully");
-    } catch (err) {
-      toast.error("Profile update failed");
+    } catch (err: any) {
+        const message = err?.response?.data?.message || "Profile update failed";
+        toast.error(message);
     }
   };
 

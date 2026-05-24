@@ -50,7 +50,6 @@ export default class AuthController implements IAuthController {
 
     }
 
-
     async userRegister(req: Request, res: Response , next : NextFunction) {
         try{
             const userCount = await UserModel.countDocuments();
@@ -106,6 +105,12 @@ export default class AuthController implements IAuthController {
     async updateProfile(req: Request,res: Response, next: NextFunction) {
             try {
                 const userId = (req as any).user.sub;
+                if (userId === process.env.DEMO_USER_ID) {
+                    return res.status(403).json({
+                        status: false,
+                        message: "Demo account cannot be modified"
+                    });
+                }
                 const { username, email } = req.body;
                 const updated = await UserModel.findByIdAndUpdate(
                     userId,{ username,email,},
@@ -125,6 +130,12 @@ export default class AuthController implements IAuthController {
     async changePassword(req: Request, res: Response, next: NextFunction) {
         try {
             const userId = (req as any).user.sub;
+            if (userId === process.env.DEMO_USER_ID) {
+            return res.status(403).json({
+                status: false,
+                message: "Demo account password cannot be changed"
+            });
+         }
             const { oldPassword, newPassword } = req.body
             const user = await UserModel.findById(userId);
 
@@ -160,6 +171,12 @@ export default class AuthController implements IAuthController {
     async deleteProfile(req: Request, res: Response, next: NextFunction){
         try{
             const userId = (req as any).user.sub
+            if (userId === process.env.DEMO_USER_ID) {
+            return res.status(403).json({
+                status: false,
+                message: "Demo account cannot be deleted"
+            });
+        }
             await ResumeModel.deleteMany({ userId });
             const deletedUser = await UserModel.findByIdAndDelete(userId)
             if (!deletedUser){

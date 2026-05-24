@@ -27,8 +27,9 @@ export const PasswordUpdateForm = () => {
             toast.success("Password updated. Please login again.");
             logoutUser();
             navigate("/login");
-        } catch {
-            toast.error("Password update failed");
+        } catch (err: any) {
+            const message = err?.response?.data?.message || "Password update failed";
+            toast.error(message);
         }
     };
 

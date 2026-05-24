@@ -18,8 +18,9 @@ export const DeleteProfileForm =()=>{
                 toast.success("Account deleted successfully.");
                 logoutUser();
                 navigate("/register");
-        } catch {
-                toast.error("Failed to delete account.");
+        } catch (err: any) {
+            const message = err?.response?.data?.message || "Failed to delete account.";
+            toast.error(message);
         }
     };
 
