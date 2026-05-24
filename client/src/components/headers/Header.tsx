@@ -23,13 +23,13 @@ export default function Header() {
                 {/* LEFT */}
                 <LogoLeft/>
 
-                {/* RIGHT SIDE */}
+                {/* RIGHT */}
                 <div className="ml-auto flex items-center gap-4 relative">
 
                     <div className="relative">
                         <button
                             onClick={() => setOpen((prev) => !prev)}
-                            className="flex items-center gap-3 rounded-lg px-2 py-1 transition hover:bg-blue-50"
+                            className="flex items-center gap-3 rounded-lg px-2 py-1 transition hover:bg-blue-50 hover:cursor-pointer"
                         >
                             <div className="w-8 h-8 rounded-full bg-blue-900 text-white flex items-center justify-center text-sm font-bold uppercase shadow-sm">
                                 {loggedInUser?.username?.[0]}
@@ -56,7 +56,7 @@ export default function Header() {
                                         setOpen(false);
                                         navigate("/profile");
                                     }}
-                                    className="w-full text-left px-4 py-2 text-sm text-blue-900 hover:bg-blue-100 transition"
+                                    className="w-full text-left px-4 py-2 text-sm text-blue-900 hover:bg-blue-100 transition hover:cursor-pointer"
                                 >
                                     Profile
                                 </button>
@@ -66,7 +66,7 @@ export default function Header() {
                                         setOpen(false);
                                         handleLogout();
                                     }}
-                                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition"
+                                    className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 transition hover:cursor-pointer"
                                 >
                                     Logout
                                 </button>

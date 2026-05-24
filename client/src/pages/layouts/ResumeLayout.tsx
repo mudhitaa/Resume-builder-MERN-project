@@ -10,49 +10,49 @@ import { toast } from "sonner";
 export const ResumeLayout = () => {
     const [resumeData, setResumeData] = useState<IResumeData>({
         fullname: "",
-    email: "",
-    phone: "",
-    address: "",
+        email: "",
+        phone: "",
+        address: "",
 
-    linkedin: "",
-    github: "",
+        linkedin: "",
+        github: "",
 
-    summary: "",
+        summary: "",
 
-    skills: [],
+        skills: [],
 
-    template: "modern",
-    font: "poppins",
+        template: "modern",
+        font: "poppins",
 
-    accentColor: "",
+        accentColor: "",
 
-    education: [
-        {
-            id: crypto.randomUUID(),
-            school: "",
-            degree: "",
-            startYear: "",
-            endYear: ""
-        }
-    ],
+        education: [
+            {
+                id: crypto.randomUUID(),
+                school: "",
+                degree: "",
+                startYear: "",
+                endYear: ""
+            }
+        ],
 
-    experience: [
-        {
-            id: crypto.randomUUID(),
-            company: "",
-            position: "",
-            startDate: "",
-            endDate: "",
-            description: ""
-        }
-    ],
+        experience: [
+            {
+                id: crypto.randomUUID(),
+                company: "",
+                position: "",
+                startDate: "",
+                endDate: "",
+                description: ""
+            }
+        ],
 
-    projects: [],
+        projects: [],
 
-    certifications: []
+        certifications: []
     });
 
-    // LOAD USER RESUME
+    // LOAD RESUME
     useEffect(() => {
         const loadResume = async () => {
             try {
@@ -87,10 +87,7 @@ export const ResumeLayout = () => {
             style={{ backgroundImage: `url(${bgImage})` }}
         >
             <div className="w-full h-full bg-blue-50 rounded-2xl shadow-md p-5">
-
-                {/* MAIN */}
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-6 h-full">
-
                     {/* LEFT */}
                     <div className="h-full overflow-y-auto pr-2">
                         <ResumeForm
@@ -99,13 +96,12 @@ export const ResumeLayout = () => {
                             onSave={handleSaveResume}
                         />
                     </div>
-
                     {/* RIGHT  */}
                     <div className="h-full overflow-y-auto">
                             <ResumeLive resumeData={resumeData}/>   
                     </div>
                     
-                    {/* HIDDEN PDF VERSION */}
+                    {/* PDF */}
                     <div id="pdf-render"
                         style={{
                             position: "fixed",
@@ -121,7 +117,6 @@ export const ResumeLayout = () => {
                     </div>
 
                 </div>
-
             </div>
         </div>
     );
