@@ -6,7 +6,7 @@ import { bodyValidator } from "../middleware/Validator";
 import { ChangePasswordSchema, UpdateProfileSchema, UserLoginSchema, UserRegisterSchema } from "../validationSchema/AuthSchema";
 import multerUploader from "../middleware/multerMiddleware";
 import { authMiddleware } from "../middleware/AuthMiddleware";
-import { authLimiter } from "../server";
+import { authLimiter } from "../middleware/RateLimitMiddleware";
 
 const authRouter: RouterType = Router();
 const authCtrl: IAuthController = new AuthController();
