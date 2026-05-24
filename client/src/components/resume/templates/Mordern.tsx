@@ -1,4 +1,4 @@
-// templates/Classic.tsx
+
 
 import type { ITemplateProps } from "../../../types/PreviewTypes";
 import { SummaryPreview } from "../preview/SummaryPreview";
@@ -16,7 +16,7 @@ import {
     FaLinkedin,
 } from "react-icons/fa6";
 
-export default function ClassicTemplate({
+export default function MordernTemplate({
     resumeData,
     fontClass,
     

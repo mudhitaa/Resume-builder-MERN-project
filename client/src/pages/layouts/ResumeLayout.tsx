@@ -61,7 +61,7 @@ export const ResumeLayout = () => {
         <div className="w-full bg-blue-50 rounded-2xl shadow-md p-3 sm:p-5 flex flex-col overflow-hidden">
 
             {/* MOBILE TABS */}
-            <div className="flex lg:hidden mb-3 bg-white rounded-xl p-1 shadow-sm flex-shrink-0">
+            <div className="flex lg:hidden mb-3 bg-white rounded-xl p-1 shadow-sm shrink-0">
                 <button
                     onClick={() => setActiveTab("form")}
                     className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
