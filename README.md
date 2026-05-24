@@ -29,7 +29,6 @@ A full-stack Resume Builder web application that allows users to create, edit, p
 
 ---
 ## Live Demo
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://resume-builder-mern-project.vercel.app)
 [https://resume-builder-mern-project.vercel.app](https://resume-builder-mern-project.vercel.app)
 
 ### Test Account
