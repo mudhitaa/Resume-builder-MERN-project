@@ -53,6 +53,14 @@ export default class AuthController implements IAuthController {
 
     async userRegister(req: Request, res: Response , next : NextFunction) {
         try{
+            const userCount = await UserModel.countDocuments();
+            if (userCount >= 50) {
+                return res.status(403).json({
+                    status: false,
+                    message: "Registration is currently closed"
+                });
+            }
+                    
             const data = req.body
             
             //pswd encryption
