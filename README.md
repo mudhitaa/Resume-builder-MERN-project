@@ -29,9 +29,10 @@ A full-stack Resume Builder web application that allows users to create, edit, p
 
 ---
 ## Live Demo
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://resume-builder-mern-project.vercel.app)
 [https://resume-builder-mern-project.vercel.app](https://resume-builder-mern-project.vercel.app)
 
-### est Account
+### Test Account
 You can log in with the following credentials:
 
 | Field | Value |
@@ -41,7 +42,9 @@ You can log in with the following credentials:
 | **Password** | Alice123# |
 
 > Or feel free to register your own account!
-
+> 
+> Backend is hosted on Render free tier — 
+> first load may take 30-60 seconds to wake up.
 
 ## Tech Stack
 
@@ -108,10 +111,14 @@ pnpm dev
 ```
 #### 3. Frontend Setup (Client)
 Navigate to the client directory, install dependencies, and launch the application.
+Create a `.env` file in the root of the `client` directory:
+```env
+VITE_APP_BASE_URL=http://localhost:9005/api/v1/
+```
 ```bash
 cd client
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ### Deployment Ports
@@ -119,12 +126,10 @@ npm run dev
 * **Frontend:** Open the URL provided in your terminal output (usually `http://localhost:5173` or `http://localhost:3000`) to view the application in your browser.
 
 # Future Improvements
-- Migration of frontend to React (MERN stack transition)
-- Improved recommendation system for personalized recipes
-- Real-time chat feature between users
-- Mobile application version
-- Cloud deployment with CI/CD pipeline
-- Enhanced AI response tuning for better recipe accuracy
+- Drag and drop section reordering
+- Resume sharing via public link
+- Dark mode support
+- Mobile app version
 
 # Author 
 Mudhita Bajracharya
