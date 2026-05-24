@@ -30,7 +30,18 @@ A full-stack Resume Builder web application that allows users to create, edit, p
 ---
 ## Live Demo
 [https://resume-builder-mern-project.vercel.app](https://resume-builder-mern-project.vercel.app)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://resume-builder-mern-project.vercel.app)
+
+### est Account
+You can log in with the following credentials:
+
+| Field | Value |
+|---|---|
+| **Username** | Alice |
+| **Email** | alice@gmail.com |
+| **Password** | Alice123# |
+
+> Or feel free to register your own account!
+
 
 ## Tech Stack
 
