@@ -13,7 +13,11 @@ import rateLimit from "express-rate-limit";
 const app: Application = express();
 
 app.use(cors({
-  origin: "http://localhost:5173"
+  origin: [
+    "http://localhost:5173",                          // local dev
+    "https://resume-builder-mern-project.vercel.app" // production
+  ],
+  credentials: true
 }))
 
 //xxs prevent
