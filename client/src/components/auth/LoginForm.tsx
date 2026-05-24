@@ -24,7 +24,7 @@ export default  function LoginForm() {
                 navigate("/resume-builder")
                 console.log(userDetail)
             }catch(exeception){
-                toast.error("login error")
+                toast.error("Login Error.")
             }
     }
 

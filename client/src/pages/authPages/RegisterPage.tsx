@@ -18,7 +18,7 @@ export default function RegisterPage() {
           <div className="w-full flex justify-center md:justify-end">
 
             <div className="relative w-full max-w-md group">
-              {/* glow */}
+             
               <div className="absolute inset-0 bg-linear-to-br from-purple-400 to-blue-500 blur-3xl opacity-20 rounded-full group-hover:opacity-30 transition"></div>
               {/* card */}
               <div className="relative bg-white/75 backdrop-blur-2xl border border-white/30 shadow-xl rounded-2xl p-6 md:p-8 group-hover:shadow-2xl transition">
@@ -28,7 +28,7 @@ export default function RegisterPage() {
                   <Heading1 pagetitle="Create Account" className="text-center" />
 
                   <p className="text-sm text-gray-500">
-                    Start building your professional resume in minutes
+                    Start building your professional resume.
                   </p>
 
                 </div>

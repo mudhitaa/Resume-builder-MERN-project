@@ -25,7 +25,7 @@ export default function ResumeTransformPreview() {
     <div className="relative w-full max-w-md group">
 
       <div className="absolute inset-0 bg-linear-to-br from-blue-400 via-indigo-400 to-purple-400 blur-3xl opacity-25 rounded-full group-hover:opacity-40 transition"></div>
-      <div className="relative bg-red/80 backdrop-blur-xl border border-blue-200 shadow-2xl rounded-2xl p-6 space-y-5 transition group-hover:-translate-y-1">
+      <div className="relative bg-red/80 backdrop-blur-xl border border-blue-200 shadow-2xl rounded-2xl p-6 space-y-5 ">
 
         <div className="space-y-2">
 

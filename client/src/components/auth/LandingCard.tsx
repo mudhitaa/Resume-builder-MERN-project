@@ -2,8 +2,6 @@ export const LandingCard=()=>{
     return(
         <div className="flex justify-center md:justify-end">
         <div className="relative w-full max-w-md group">
-
-            {/* linear Glow */}
             <div className="absolute inset-0 bg-linear-to-br from-blue-400 via-indigo-400 to-purple-400 blur-3xl opacity-25 rounded-full transition-all duration-500 group-hover:opacity-40 group-hover:scale-105"></div>
             {/* Card */}
             <div className="relative bg-white/90 backdrop-blur-xl border border-white/40 shadow-xl rounded-2xl p-6 md:p-8 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl">
@@ -13,24 +11,23 @@ export const LandingCard=()=>{
                 Resume Preview
                 </h3>
 
-                {/* Status Badge */}
                 <span className="flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-linear-to-r from-green-100 to-emerald-100 text-green-700 border border-green-200 shadow-sm">
                 <span className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></span>
                 Live Preview
                 </span>
             </div>
 
-            {/* Animated Sections */}
+            {/* Animated lines */}
             <div className="space-y-3">
-                <div className="h-3 rounded w-3/4 bg-linear-to-r from-gray-200 to-gray-100 animate-pulse"></div>
-                <div className="h-3 rounded w-1/2 bg-linear-to-r from-blue-100 to-indigo-100 animate-pulse"></div>
-                <div className="h-3 rounded w-5/6 bg-linear-to-r from-purple-100 to-pink-100 animate-pulse"></div>
+                <div className="h-3 rounded w-3/4 bg-linear-to-r from-gray-300 to-gray-200 animate-pulse"></div>
+                <div className="h-3 rounded w-1/2 bg-linear-to-r from-blue-200 to-indigo-200 animate-pulse"></div>
+                <div className="h-3 rounded w-5/6 bg-linear-to-r from-purple-200 to-pink-200 animate-pulse"></div>
                 <div className="h-3 rounded w-2/3 bg-linear-to-r from-gray-200 to-gray-100 animate-pulse"></div>
-                <div className="h-3 rounded w-4/5 bg-linear-to-r from-indigo-100 to-blue-100 animate-pulse"></div>
+                <div className="h-3 rounded w-4/5 bg-linear-to-r from-indigo-200 to-blue-200 animate-pulse"></div>
             </div>
-            {/* Divider */}
+            
             <div className="my-5 h-px bg-linear-to-r from-transparent via-gray-200 to-transparent"></div>
-            {/* Footer */}
+          
             <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-500">
                 ATS optimized • Clean formatting
@@ -49,7 +46,7 @@ export const LoginPreviewCard = () => {
   return (
     <div className="hidden md:flex justify-center">
       <div className="relative w-full max-w-lg group">
-        {/* GLOW */}
+        
         <div className="absolute inset-0 bg-linear-to-br from-blue-500 via-indigo-500 to-purple-500 opacity-25 blur-3xl rounded-full scale-95 group-hover:scale-105 transition-all duration-700"></div>
 
         {/* FLOATING DECORATION */}
@@ -57,7 +54,7 @@ export const LoginPreviewCard = () => {
         <div className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full bg-purple-400/20 blur-2xl animate-pulse"></div>
 
         {/* MAIN CONTAINER */}
-        <div className="relative bg-white/75 backdrop-blur-2xl border border-white/40 shadow-2xl rounded-4xl overflow-hidden transition-all duration-500 group-hover:-translate-y-1">
+        <div className="relative bg-white/75 backdrop-blur-2xl border border-white/40 shadow-2xl rounded-4xl overflow-hidden transition-all duration-500 ">
 
           {/* TOP WINDOW BAR */}
           <div className="h-12 border-b border-gray-100 flex items-center px-5 bg-white/70">

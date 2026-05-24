@@ -13,7 +13,7 @@ export default function ProtectedRoute({
         useEffect(() => {
             if (!loggedInUser) {
                 navigate('/login');
-                toast.info("You need to login");
+                toast.info("You need to login.");
             }
         }, [loggedInUser, navigate]);
   

@@ -1,7 +1,7 @@
-import { Heading1 } from "../typography/Heading";
-import logo from "../../assets/images/logo.jpg";
+
 import { RedirectLink } from "../../ui/Links";
 import { useAuth } from "../../hooks/useAuth";
+import { LogoLeft } from "./LogoComponent";
 
 export interface Firstheaderprops{
     linkurl?:string;
@@ -10,7 +10,7 @@ export interface Firstheaderprops{
 }
 
 
-export const FirstHeader = ({logourl ="/",linkurl,linktext}:Readonly<Firstheaderprops>) => {
+export const FirstHeader = ({linkurl,linktext}:Readonly<Firstheaderprops>) => {
 
 
   const{loggedInUser}=useAuth()
@@ -19,27 +19,11 @@ export const FirstHeader = ({logourl ="/",linkurl,linktext}:Readonly<Firstheader
     <header className="bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
 
-        {/* LEFT SIDE */}
         <div >
-          <RedirectLink url={logourl} 
-          
-              txt = {<div className="flex items-center gap-2">
-                <img
-                src={logo}
-                alt="EasyResume Logo"
-                className="h-14 w-14 rounded-full object-cover"
-              />
-
-              <Heading1
-                pagetitle="EasyResume"
-                className="text-blue-900"
-              />
-              </div>}
-            />
+        <LogoLeft/>
           
         </div>
 
-        {/* RIGHT SIDE */}
         {!loggedInUser && (
           <div className="ml-auto flex items-center gap-4">
             <RedirectLink

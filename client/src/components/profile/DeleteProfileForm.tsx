@@ -15,11 +15,11 @@ export const DeleteProfileForm =()=>{
         if (!confirmed) return;
         try {
                 await deleteProfile();
-                toast.success("Account deleted successfully");
+                toast.success("Account deleted successfully.");
                 logoutUser();
                 navigate("/register");
         } catch {
-                toast.error("Failed to delete account");
+                toast.error("Failed to delete account.");
         }
     };
 

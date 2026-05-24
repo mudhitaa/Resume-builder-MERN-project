@@ -23,13 +23,13 @@ export default function RegisterForm() {
             const response =  await axiosInstance.post('/auth/register', 
                 {...data, expiresInMins:180},
             )
-            toast.success("registration success")
+            toast.success("Registration Success.")
             console.log(response)
             navigate('/login')
 
         
             }catch{
-                toast.error("registration error")
+                toast.error("Registration Error.")
             }
     }
 
