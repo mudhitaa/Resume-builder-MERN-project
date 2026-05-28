@@ -36,7 +36,9 @@ const limiter= rateLimit({
 })
 app.use(limiter)
 
-
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
 
 
 const PORT = 9005;
