@@ -45,7 +45,7 @@ export const generatePDF = async (data: IResumeData) => {
 
         const pdf = new jsPDF("p", "mm", "a4");
         pdf.addImage(dataUrl, "JPEG", 0, 0, 210, 297);
-        pdf.save(`${data.fullname}-${data.template}.pdf`);
+        pdf.save(`${data.template}.pdf`);
 
     } catch (err) {
         console.error("PDF generation failed:", err);
