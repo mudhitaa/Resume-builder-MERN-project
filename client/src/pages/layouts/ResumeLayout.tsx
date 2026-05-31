@@ -110,21 +110,6 @@ export const ResumeLayout = () => {
                 </div>
             </div>
 
-            {/* PDF */}
-            <div
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    left: "-99999px",
-                    width: "794px",     
-                    opacity: 0,
-                    pointerEvents: "none",
-                    zIndex: -1,         
-                }}
-            >
-                <ResumeLive resumeData={resumeData} isPDF={true} />
-            </div>
-
         </div>
     </div>
 );

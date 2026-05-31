@@ -1,21 +1,28 @@
-import { toJpeg } from "html-to-image";  // ← change import
+import { toJpeg } from "html-to-image";
 import jsPDF from "jspdf";
 import type { IResumeData } from "../types/FormTypes";
 
 export const generatePDF = async (data: IResumeData) => {
     try {
         const container = document.getElementById("resume-pdf");
-
         if (!container) {
             console.error(" #resume-pdf not found");
             return;
         }
-        
-console.log("Container size:", container.offsetWidth, container.offsetHeight);
-console.log("Container HTML:", container.innerHTML.slice(0, 200));
 
-        // Wait for fonts/images to load
         await document.fonts.ready;
+
+        // Temporarily reset any zoom transform so we capture full size
+        const parent = container.parentElement;
+        const originalTransform = parent?.style.transform ?? "";
+        const originalMargin = parent?.style.marginBottom ?? "";
+        if (parent) {
+            parent.style.transform = "scale(1)";
+            parent.style.marginBottom = "0";
+        }
+
+        // Small delay 
+        await new Promise(res => setTimeout(res, 100));
 
         const dataUrl = await toJpeg(container, {
             cacheBust: true,
@@ -25,9 +32,14 @@ console.log("Container HTML:", container.innerHTML.slice(0, 200));
             skipFonts: true,
         });
 
-        // Validate output before passing to jsPDF
+        // Restore transform
+        if (parent) {
+            parent.style.transform = originalTransform;
+            parent.style.marginBottom = originalMargin;
+        }
+
         if (!dataUrl || !dataUrl.startsWith("data:image/jpeg")) {
-            console.error(" Invalid image data:", dataUrl?.slice(0, 50));
+            console.error(" Still invalid:", dataUrl?.slice(0, 80));
             return;
         }
 
@@ -36,6 +48,6 @@ console.log("Container HTML:", container.innerHTML.slice(0, 200));
         pdf.save(`${data.fullname}-${data.template}.pdf`);
 
     } catch (err) {
-        console.error("PDF generation failed:", err);
+        console.error(" PDF generation failed:", err);
     }
 };
