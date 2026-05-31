@@ -116,10 +116,10 @@ export const ResumeLayout = () => {
                     position: "fixed",
                     top: 0,
                     left: "-99999px",
-                    width: "210mm",
-                    zIndex: -1,
+                    width: "794px",     
+                    opacity: 0,
                     pointerEvents: "none",
-                    opacity: 0,         
+                    zIndex: -1,         
                 }}
             >
                 <ResumeLive resumeData={resumeData} isPDF={true} />
