@@ -6,13 +6,13 @@ export const generatePDF = async (data: IResumeData) => {
     try {
         const container = document.getElementById("resume-pdf");
         if (!container) {
-            console.error(" #resume-pdf not found");
+            console.error("#resume-pdf not found");
             return;
         }
 
         await document.fonts.ready;
+        await new Promise(res => setTimeout(res, 300));
 
-        // Temporarily reset any zoom transform so we capture full size
         const parent = container.parentElement;
         const originalTransform = parent?.style.transform ?? "";
         const originalMargin = parent?.style.marginBottom ?? "";
@@ -21,7 +21,6 @@ export const generatePDF = async (data: IResumeData) => {
             parent.style.marginBottom = "0";
         }
 
-        // Small delay 
         await new Promise(res => setTimeout(res, 100));
 
         const dataUrl = await toJpeg(container, {
@@ -30,16 +29,17 @@ export const generatePDF = async (data: IResumeData) => {
             backgroundColor: "#ffffff",
             quality: 0.95,
             skipFonts: true,
+            width: container.scrollWidth,
+            height: container.scrollHeight,
         });
 
-        // Restore transform
         if (parent) {
             parent.style.transform = originalTransform;
             parent.style.marginBottom = originalMargin;
         }
 
         if (!dataUrl || !dataUrl.startsWith("data:image/jpeg")) {
-            console.error(" Still invalid:", dataUrl?.slice(0, 80));
+            console.error("Still invalid:", dataUrl?.slice(0, 80));
             return;
         }
 
@@ -48,6 +48,6 @@ export const generatePDF = async (data: IResumeData) => {
         pdf.save(`${data.fullname}-${data.template}.pdf`);
 
     } catch (err) {
-        console.error(" PDF generation failed:", err);
+        console.error("PDF generation failed:", err);
     }
 };

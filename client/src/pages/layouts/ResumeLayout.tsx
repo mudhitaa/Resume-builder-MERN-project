@@ -5,6 +5,7 @@ import bgImage from "../../assets/images/landingbg.jpg";
 import { type IResumeData } from "../../types/FormTypes";
 import { getMyResume, saveResume } from "../../services/ResumeService";
 import { toast } from "sonner";
+import { generatePDF } from "../../utils/GeneratePDF";
 
 export const ResumeLayout = () => {
     const [activeTab, setActiveTab] = useState<"form" | "preview">("form");
@@ -93,11 +94,16 @@ export const ResumeLayout = () => {
                     ${activeTab === "form" ? "block" : "hidden"}
                     lg:block
                 `}>
-                    <ResumeForm
-                        resumeData={resumeData}
-                        setResumeData={setResumeData}
-                        onSave={handleSaveResume}
-                    />
+<ResumeForm
+    resumeData={resumeData}
+    setResumeData={setResumeData}
+    onSave={handleSaveResume}
+    onGeneratePDF={async () => {
+        setActiveTab("preview");                        // show preview first
+        await new Promise(res => setTimeout(res, 150)); // wait for render
+        await generatePDF(resumeData);
+    }}
+/>
                 </div>
 
                 {/* RIGHT — Preview */}

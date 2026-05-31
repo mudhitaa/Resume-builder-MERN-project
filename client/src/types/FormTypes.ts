@@ -50,6 +50,7 @@ export interface IResumeFormProps {
     setResumeData: React.Dispatch<React.SetStateAction<IResumeData>>;
     className?: string;
     onSave?:()=>void
+    onGeneratePDF: () => void;
 }
 
 export interface ICertifications{

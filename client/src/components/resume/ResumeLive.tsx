@@ -25,7 +25,6 @@ export default function ResumeLive({
     return (
         <div className={`bg-white rounded-2xl shadow-md p-6 ${className || ""}`}>
 
-            {/* ZOOM CONTROLS*/}
             {!isPDF && (
                 <div className="flex items-center justify-end gap-2 mb-3">
                     <button
@@ -50,17 +49,17 @@ export default function ResumeLive({
                 </div>
             )}
 
-            {/* RESUME CONTENT */}
-            <div className="overflow-hidden">
+            {/* removed overflow-hidden — it blocks html-to-image */}
+            <div>
                 <div
                     className={`bg-white ${fontClass}`}
-                        style={{
-                            transform: `scale(${zoom / 100})`,
-                            transformOrigin: "top center",
-                            marginBottom: zoom < 100 
-                                ? `${(zoom - 100) * 5}px` 
-                                : `${(zoom - 100) * 3}px`  
-                        }}
+                    style={{
+                        transform: `scale(${zoom / 100})`,
+                        transformOrigin: "top center",
+                        marginBottom: zoom < 100
+                            ? `${(zoom - 100) * 5}px`
+                            : `${(zoom - 100) * 3}px`
+                    }}
                 >
                     <div id="resume-pdf">
                         {resumeData.template === "modern" && (
