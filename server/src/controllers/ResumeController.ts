@@ -24,9 +24,9 @@ export default class ResumeController implements IResumeController{
       const userId = (req as any).user.sub;
       const data = req.body;
       const resume = await ResumeModel.findOneAndUpdate(
-        { userId },
-        { ...data, userId },
-        { new: true, upsert: true }
+          { userId },
+          { ...data, userId },
+          { returnDocument: "after", upsert: true }
       );
       res.json({
         status: true,
