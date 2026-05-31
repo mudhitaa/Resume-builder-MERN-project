@@ -71,15 +71,19 @@ export const generatePDF = async (data: IResumeData) => {
                 page.style.minWidth = origPageMinWidth;
 
                 if (!dataUrl.startsWith("data:image/jpeg")) {
-                    console.error(`❌ Page ${i + 1} capture failed`);
+                    console.error(`Page ${i + 1} capture failed`);
                     continue;
                 }
 
-                // Scale height 
+                // Scale height
                 const imgHeightMm = (page.scrollHeight / A4_WIDTH_PX) * 210;
 
-                if (i > 0) pdf.addPage();
-                pdf.addImage(dataUrl, "JPEG", 0, 0, 210, Math.min(imgHeightMm, 297));
+                if (i === 0) {
+                    pdf.addImage(dataUrl, "JPEG", 0, 0, 210, imgHeightMm);
+                } else {
+                    pdf.addPage([210, imgHeightMm]);
+                    pdf.addImage(dataUrl, "JPEG", 0, 0, 210, imgHeightMm);
+                }
             }
 
         } else {
