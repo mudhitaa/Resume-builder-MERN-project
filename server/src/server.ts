@@ -67,8 +67,10 @@ app.use((req, res, next) => {
 // error middleware
 app.use(ExceptionHandlingMiddleware);
 
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server running on http://localhost:${PORT}`);
-    });
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+connectDB().catch(err => {
+    console.error("DB Error:", err);
 });
